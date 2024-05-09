@@ -145,6 +145,31 @@
                                             endforeach; ?>
                                         </tbody>
                                     </table>
+                                    <?php if ($data["pagination"] > 1) : ?>
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination pagination-lg justify-content-center">
+                                                <?php if ($data['currentPage'] > 1) : ?>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="<?= BASEURL; ?>/kategori/index/<?= $data['prevPage'] ?>" aria-label="Previous">
+                                                            <span aria-hidden="true">&laquo;</span>
+                                                        </a>
+                                                    </li>
+                                                <?php endif; ?>
+                                                <?php for ($i = 1; $i <= $data["pagination"]; $i++) : ?>
+                                                    <li class="page-item <?= ($i == $data['currentPage']) ? 'active' : '' ?>">
+                                                        <a class="page-link" href="<?= BASEURL; ?>/kategori/index/<?= $i ?>"><?= $i; ?></a>
+                                                    </li>
+                                                <?php endfor; ?>
+                                                <?php if ($data['currentPage'] < $data['pagination']) : ?>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="<?= BASEURL; ?>/kategori/index/<?= $data['nextPage'] ?>" aria-label="Next">
+                                                            <span aria-hidden="true">&raquo;</span>
+                                                        </a>
+                                                    </li>
+                                                <?php endif; ?>
+                                            </ul>
+                                        </nav>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>

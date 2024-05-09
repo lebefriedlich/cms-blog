@@ -9,11 +9,24 @@ class kategori_model
         $this->db = new Database();
     }
 
-    public function loadKategori()
+    public function loadKategori($halaman)
     {
-        $query = "SELECT * FROM kategori";
+        $jumlahDataPerHalaman = 3;
+        $awalData = ($jumlahDataPerHalaman * $halaman) - $jumlahDataPerHalaman;
+
+        $query = "SELECT * FROM kategori LIMIT $awalData, $jumlahDataPerHalaman";
         $this->db->query($query);
         return $this->db->resultSet();
+    }
+
+    public function pagination()
+    {
+        $jumlahDataPerHalaman = 3;
+        $this->db->query("SELECT * FROM kategori");
+        $this->db->execute();
+        $jumlahData = $this->db->Rowcount();
+        $totalPages = ceil($jumlahData / $jumlahDataPerHalaman);
+        return $totalPages;
     }
 
     public function add($data)

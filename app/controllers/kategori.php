@@ -2,11 +2,15 @@
 
 class kategori extends Controller
 {
-    public function index()
+    public function index($halaman = 1)
     {
         if (isset($_SESSION['login'])) {
             $data['judul'] = 'Kategori';
-            $data['kategoris'] = $this->model('kategori_model')->loadKategori();
+            $data['kategoris'] = $this->model('kategori_model')->loadKategori($halaman);
+            $data['pagination'] = $this->model('kategori_model')->pagination();
+            $data['currentPage'] = $halaman;
+            $data['prevPage'] = ($halaman > 1) ?  $halaman - 1 : 1;
+            $data['nextPage'] = ($halaman > $data['pagination']) ?  $halaman + 1 : $data['pagination'];
             $this->view('templates/header', $data);
             $this->view('kategori/index', $data);
         } else {
@@ -37,7 +41,7 @@ class kategori extends Controller
             } else {
                 Flasher::setFlash('Kamu gagal ', 'mengedit kategori', 'danger');
             }
-        
+
             header('Location: ' . BASEURL . '/kategori');
             exit;
         }

@@ -79,7 +79,6 @@ class artikel extends Controller
 
             if (!empty($_FILES['image']['name'])) {
                 $file_path = $_SERVER['DOCUMENT_ROOT'] . "/cms-blog/app/assets/artikel/" . $_POST['image-lawas'];
-
                 if (file_exists($file_path) && unlink($file_path)) {
                     $allowed_mime_types = array("image/jpeg", "image/png");
 
@@ -107,14 +106,24 @@ class artikel extends Controller
                     }
                 }
             } else {
-                $editResult = $this->model('artikel_model')->edit($_POST);
-                if ($editResult > 0) {
-                    Flasher::setFlash('Kamu berhasil ', 'mengedit artikel', 'success');
-                } else {
-                    Flasher::setFlash('Kamu gagal ', 'mengedit artikel', 'danger');
+                $file_path = $_SERVER['DOCUMENT_ROOT'] . "/cms-blog/app/assets/artikel/";
+                $old_file_extension = pathinfo($_POST['image-lawas'], PATHINFO_EXTENSION);
+                $new_file_name = $_POST['slug'] . '.' . $old_file_extension;
+                $old_file_path = $file_path . $_POST['image-lawas'];
+                $new_file_path = $file_path . $new_file_name;
+                
+                if (file_exists($old_file_path)) {
+                    if (rename($old_file_path, $new_file_path)) {
+                        $_POST['image'] = $new_file_name;
+                        $editResult = $this->model('artikel_model')->edit($_POST);
+                        if ($editResult > 0) {
+                            Flasher::setFlash('Kamu berhasil ', 'mengedit artikel', 'success');
+                        } else {
+                            Flasher::setFlash('Kamu gagal ', 'mengedit artikel', 'danger');
+                        }
+                    }
                 }
             }
-
             header('Location: ' . BASEURL . '/artikel');
             exit;
         }

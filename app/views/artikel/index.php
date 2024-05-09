@@ -83,8 +83,8 @@
                                     }
                                     ?> -->
                             <!-- <?php
-                            var_dump($data['artikels']);
-                            ?> -->
+                                    var_dump($data['artikels']);
+                                    ?> -->
                             <h1 class="mb-4">Artikel</h1>
                             <div class="card mb-4">
                                 <div class="card-header">
@@ -135,7 +135,7 @@
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form action="<?= BASEURL; ?>/artikel/edit/<?= $artikel['id_artikel'] . '/' . $artikel['id_kontributor'] ?>" method="post">
+                                                                <form action="<?= BASEURL; ?>/artikel/edit/<?= $artikel['id_artikel'] . '/' . $artikel['id_kontributor'] ?>" method="post" enctype="multipart/form-data">
                                                                     <input type="text" name="id_artikel" class="visually-hidden" value="<?= $artikel['id_artikel'] ?>">
                                                                     <div class="mb-3">
                                                                         <label for="judul" class="form-label">Judul:</label>
@@ -203,6 +203,23 @@
                                             endforeach; ?>
                                         </tbody>
                                     </table>
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-center">
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
                                 </div>
                             </div>
                         </div>

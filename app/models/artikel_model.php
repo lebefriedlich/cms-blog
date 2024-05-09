@@ -72,7 +72,7 @@ class artikel_model
         }
         $this->db->bind("id_artikel", $data['id_artikel']);
         $this->db->execute();
-        $this->db->rowCount();
+        $jumlah_artikel_diubah = $this->db->rowCount();
 
         $query = "UPDATE kontributor
                     SET id_penulis = :id_penulis, id_kategori = :id_kategori, id_artikel = :id_artikel WHERE id_kontributor = :id_kontributor";
@@ -82,7 +82,13 @@ class artikel_model
         $this->db->bind("id_artikel", $data['id_artikel']);
         $this->db->bind("id_kontributor", $data['id_kontributor']);
         $this->db->execute();
-        return $this->db->rowCount();
+        $jumlah_kontributor_diubah = $this->db->rowCount();
+
+        if ($jumlah_artikel_diubah > 0) {
+            return $jumlah_artikel_diubah; 
+        } else {
+            return $jumlah_kontributor_diubah; 
+        }
     }
 
     public function delete($id_artikel, $id_kontributor)

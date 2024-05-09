@@ -32,6 +32,18 @@ class artikel_model
         return $totalPages;
     }
 
+    public function loadKategori()
+    {
+        $query = "SELECT * FROM kategori";
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
+    public function loadPenulis()
+    {
+        $query = "SELECT * FROM penulis";
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
     public function add($data)
     {
         $query = "INSERT INTO artikel VALUES

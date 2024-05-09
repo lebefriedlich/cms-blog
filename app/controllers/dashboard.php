@@ -5,8 +5,11 @@ class dashboard extends Controller
     {
         if (isset($_SESSION['login'])) {
             $data['judul'] = 'Dashboard';
+            $data['jumlahPenulis'] = $this->model('dashboard_model')->jumlahPenulis();
+            $data['jumlahKategori'] = $this->model('dashboard_model')->jumlahKategori();
+            $data['jumlahArtikel'] = $this->model('dashboard_model')->jumlahArtikel();
             $this->view('templates/header', $data);
-            $this->view('dashboard/index');
+            $this->view('dashboard/index', $data);
         } else {
             header('Location: ' . BASEURL . '/login');
             exit;

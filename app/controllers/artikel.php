@@ -11,8 +11,8 @@ class artikel extends Controller
             $data['currentPage'] = $halaman;
             $data['prevPage'] = ($halaman > 1) ?  $halaman - 1 : 1;
             $data['nextPage'] = ($halaman > $data['pagination']) ?  $halaman + 1 : $data['pagination'];
-            $data['kategoris'] = $this->model('kategori_model')->loadKategori();
-            $data['penuliss'] = $this->model('penulis_model')->loadPenulis();
+            $data['kategoris'] = $this->model('artikel_model')->loadKategori();
+            $data['penuliss'] = $this->model('artikel_model')->loadPenulis();
             $this->view('templates/header', $data);
             $this->view('artikel/index', $data);
         } else {

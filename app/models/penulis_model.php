@@ -9,13 +9,24 @@ class penulis_model
         $this->db = new Database();
     }
 
-    public function loadPenulis()
+    public function loadPenulis($halaman)
     {
-        $query = "SELECT * FROM penulis";
+        $jumlahDataPerHalaman = 5;
+        $awalData = ($jumlahDataPerHalaman * $halaman) - $jumlahDataPerHalaman;
+
+        $query = "SELECT * FROM penulis LIMIT $awalData, $jumlahDataPerHalaman";
         $this->db->query($query);
         return $this->db->resultSet();
     }
-
+    public function pagination()
+    {
+        $jumlahDataPerHalaman = 5;
+        $this->db->query("SELECT * FROM artikel");
+        $this->db->execute();
+        $jumlahData = $this->db->Rowcount();
+        $totalPages = ceil($jumlahData / $jumlahDataPerHalaman);
+        return $totalPages;
+    }
     public function checkEmail($email)
     {
         $query = "SELECT email FROM penulis WHERE email = :email";

@@ -1,11 +1,15 @@
 <?php
 class penulis extends Controller
 {
-    public function index()
+    public function index($halaman = 1)
     {
         if (isset($_SESSION['login'])) {
             $data['judul'] = 'Penulis';
-            $data['penuliss'] = $this->model('penulis_model')->loadPenulis();
+            $data['penuliss'] = $this->model('penulis_model')->loadPenulis($halaman);
+            $data['pagination'] = $this->model('penulis_model')->pagination();
+            $data['currentPage'] = $halaman;
+            $data['prevPage'] = ($halaman > 1) ?  $halaman - 1 : 1;
+            $data['nextPage'] = ($halaman > $data['pagination']) ?  $halaman + 1 : $data['pagination'];
             $this->view('templates/header', $data);
             $this->view('penulis/index', $data);
         } else {
@@ -24,7 +28,7 @@ class penulis extends Controller
                 header('Location: ' . BASEURL . '/penulis');
                 exit;
             }
-            
+
             if ($this->model('penulis_model')->add($_POST) > 0) {
                 Flasher::setFlash('Kamu berhasil ', 'menambahkan penulis', 'success');
             } else {
@@ -48,7 +52,7 @@ class penulis extends Controller
             } else {
                 Flasher::setFlash('Kamu gagal ', 'mengedit penulis', 'danger');
             }
-        
+
             header('Location: ' . BASEURL . '/penulis');
             exit;
         }

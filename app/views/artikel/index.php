@@ -42,7 +42,6 @@
                     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                         <div class="sb-sidenav-menu">
                             <div class="nav">
-                                <div class="sb-sidenav-menu-heading"></div>
                                 <a class="nav-link" href="<?= BASEURL ?>/dashboard">
                                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                     Dashboard
@@ -203,23 +202,31 @@
                                             endforeach; ?>
                                         </tbody>
                                     </table>
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination justify-content-center">
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                </a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
+                                    <?php if ($data["pagination"] > 1) : ?>
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination pagination-lg justify-content-center">
+                                                <?php if ($data['currentPage'] > 1) : ?>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="<?= BASEURL; ?>/artikel/index/<?= $data['prevPage'] ?>" aria-label="Previous">
+                                                            <span aria-hidden="true">&laquo;</span>
+                                                        </a>
+                                                    </li>
+                                                <?php endif; ?>
+                                                <?php for ($i = 1; $i <= $data["pagination"]; $i++) : ?>
+                                                    <li class="page-item <?= ($i == $data['currentPage']) ? 'active' : '' ?>">
+                                                        <a class="page-link" href="<?= BASEURL; ?>/artikel/index/<?= $i ?>"><?= $i; ?></a>
+                                                    </li>
+                                                <?php endfor; ?>
+                                                <?php if ($data['currentPage'] < $data['pagination']) : ?>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="<?= BASEURL; ?>/artikel/index/<?= $data['nextPage'] ?>" aria-label="Next">
+                                                            <span aria-hidden="true">&raquo;</span>
+                                                        </a>
+                                                    </li>
+                                                <?php endif; ?>
+                                            </ul>
+                                        </nav>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>

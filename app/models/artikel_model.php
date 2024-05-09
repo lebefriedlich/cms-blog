@@ -8,15 +8,28 @@ class artikel_model
         $this->db = new Database();
     }
 
-    public function loadArtikel()
+    public function loadArtikel($halaman)
     {
+        $jumlahDataPerHalaman = 2;
+        $awalData = ($jumlahDataPerHalaman * $halaman) - $jumlahDataPerHalaman;
+
         $query = "SELECT a.*, ktb.id_kontributor,p.id_penulis, p.nama AS nama_penulis, k.id_kategori, k.nama_kategori
         FROM artikel AS a
         JOIN kontributor AS ktb ON a.id_artikel = ktb.id_artikel
         JOIN kategori AS k ON ktb.id_kategori = k.id_kategori
-        JOIN penulis AS p ON ktb.id_penulis = p.id_penulis ORDER BY a.id_artikel DESC";
+        JOIN penulis AS p ON ktb.id_penulis = p.id_penulis ORDER BY a.id_artikel DESC LIMIT $awalData, $jumlahDataPerHalaman";
         $this->db->query($query);
         return $this->db->resultSet();
+    }
+
+    public function pagination()
+    {
+        $jumlahDataPerHalaman = 2;
+        $this->db->query("SELECT * FROM artikel");
+        $this->db->execute();
+        $jumlahData = $this->db->Rowcount();
+        $totalPages = ceil($jumlahData / $jumlahDataPerHalaman);
+        return $totalPages;
     }
 
     public function add($data)
@@ -85,9 +98,9 @@ class artikel_model
         $jumlah_kontributor_diubah = $this->db->rowCount();
 
         if ($jumlah_artikel_diubah > 0) {
-            return $jumlah_artikel_diubah; 
+            return $jumlah_artikel_diubah;
         } else {
-            return $jumlah_kontributor_diubah; 
+            return $jumlah_kontributor_diubah;
         }
     }
 

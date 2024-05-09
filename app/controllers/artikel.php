@@ -1,18 +1,22 @@
 <?php
 class artikel extends Controller
 {
-    public function index()
+    public function index($halaman = 1)
     {
         if (isset($_SESSION['login'])) {
             $data['judul'] = 'Artikel Saya';
             $data['admin'] = $_SESSION['admin'];
-            $data['artikels'] = $this->model('artikel_model')->loadArtikel();
+            $data['artikels'] = $this->model('artikel_model')->loadArtikel($halaman);
+            $data['pagination'] = $this->model('artikel_model')->pagination();
+            $data['currentPage'] = $halaman;
+            $data['prevPage'] = ($halaman > 1) ?  $halaman - 1 : 1;
+            $data['nextPage'] = ($halaman > $data['pagination']) ?  $halaman + 1 : $data['pagination'];
             $data['kategoris'] = $this->model('kategori_model')->loadKategori();
             $data['penuliss'] = $this->model('penulis_model')->loadPenulis();
             $this->view('templates/header', $data);
             $this->view('artikel/index', $data);
         } else {
-            header('Location: ' . BASEURL . '/load');
+            header('Location: ' . BASEURL . '/login');
             exit;
         }
     }

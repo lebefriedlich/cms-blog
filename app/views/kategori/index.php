@@ -37,7 +37,10 @@
             <div class="col-lg-10 mx-auto">
                 <!-- Nested row for non-featured blog posts-->
                 <div class="row">
-                    <p><a href="<?= BASEURL; ?>/home" class="text-decoration-none text-black">Home</a>  &raquo; Kategori &raquo; <a href="<?= BASEURL; ?>/home/kategori/<?= $data['slug'] ?>" class="text-decoration-none text-black"><?= $data['kategori']['nama'] ?></a></p>
+                    <p><a href="<?= BASEURL; ?>/home" class="text-decoration-none text-black">Home</a> &raquo;
+                        <a href="<?= BASEURL; ?>/home" class="text-decoration-none text-black">Kategori</a>
+                        &raquo; <a href="<?= BASEURL; ?>/home/kategori/<?= $data['slug'] ?>" class="text-decoration-none text-black"><?= $data['kategori']['nama'] ?></a>
+                    </p>
                     <?php foreach ($data['article'] as $article) : ?>
                         <div class="col-lg-6">
                             <div class="card mb-4">

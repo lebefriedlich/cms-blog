@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <p><a href="<?= BASEURL; ?>/home" class="text-decoration-none text-black">Home</a>
-                        &raquo; Kategori &raquo;
+                        &raquo; <a href="<?= BASEURL; ?>/home" class="text-decoration-none text-black">Kategori</a> &raquo;
                         <a href="<?= BASEURL; ?>/home/kategori/<?= $data['artikel']['slug_kategori'] ?>" class="text-decoration-none text-black"><?= $data['artikel']['nama_kategori'] ?></a>
                         &raquo; <a href="<?= BASEURL; ?>/post/index/<?= $data['artikel']['slug'] ?>" class="text-decoration-none text-black"><?= $data['artikel']['judul'] ?></a>
                     </p>

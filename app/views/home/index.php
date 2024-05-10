@@ -92,16 +92,6 @@
             </div>
             <!-- Side widgets-->
             <div class="col-lg-4">
-                <!-- Search widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Cari</div>
-                    <div class="card-body">
-                        <div class="input-group">
-                            <input class="form-control" type="text" placeholder="Masukkan Pencarian" aria-label="Enter search term..." aria-describedby="button-search" />
-                            <button class="btn btn-primary" id="button-search" type="button">Cari!</button>
-                        </div>
-                    </div>
-                </div>
                 <!-- Categories widget-->
                 <div class="card mb-4">
                     <div class="card-header">Kategori</div>
@@ -115,6 +105,16 @@
                                 </div>
                             <?php endforeach; ?>
                         </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header">Artikel Populer</div>
+                    <div class="card-body">
+                        <?php foreach ($data['artikelPopuler'] as $data) : ?>
+                            <ul class="list-group mb-0 ms-4">
+                                <li><a href="<?= BASEURL; ?>/post/index/<?= $data['slug'] ?>" class="text-decoration-none text-black"><?= $data['judul'] ?></a></li>
+                            </ul>
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <!-- Side widget-->

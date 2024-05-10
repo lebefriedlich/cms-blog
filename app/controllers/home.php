@@ -13,6 +13,7 @@ class home extends Controller
         $data['prevPage'] = ($halaman > 1) ?  $halaman - 1 : 1;
         $data['nextPage'] = ($halaman > $data['pagination']) ?  $halaman + 1 : $data['pagination'];
         $data['kategoris'] = $this->model('home_model')->loadKategori();
+        $data['artikelPopuler'] = $this->model('home_model')->artikelPopuler();
         $this->view('templates/header', $data);
         $this->view('home/index', $data);
         $this->view('templates/footer');

@@ -21,4 +21,16 @@ class post_model
         $this->db->bind("slug", $slug);
         return $this->db->single();
     }
+
+    public function updatePengunjung($id_artikel)
+    {
+        $query = "UPDATE artikel
+        SET jumlah_dikunjungi = jumlah_dikunjungi + 1
+        WHERE id_artikel = :id_artikel;";
+        $this->db->query($query);
+        $this->db->bind("id_artikel", $id_artikel);
+
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
 }

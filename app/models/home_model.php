@@ -83,4 +83,10 @@ class home_model
         $this->db->bind("slug", $slug);
         return $this->db->single();
     }
+
+    public function artikelPopuler(){
+        $query = "SELECT judul, slug FROM artikel ORDER BY jumlah_dikunjungi DESC LIMIT 5";
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
 }

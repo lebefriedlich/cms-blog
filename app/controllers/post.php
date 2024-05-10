@@ -5,16 +5,9 @@ class post extends Controller
     {
         $article = $this->model('post_model')->show($slug);
         $data['judul'] = $article['judul'];
-        $data['article'] = $article;
-        if (isset($_SESSION['login'])) {
-            $data['user'] = $_SESSION['user'];
-            $this->view('templates/header', $data);
-            $this->view('post/index', $data);
-            $this->view('templates/footer');
-        } else {
-            $this->view('templates/header', $data);
-            $this->view('post/index', $data);
-            $this->view('templates/footer');
-        }
+        $data['artikel'] = $article;
+        $this->view('templates/header', $data);
+        $this->view('post/index', $data);
+        $this->view('templates/footer');
     }
 }

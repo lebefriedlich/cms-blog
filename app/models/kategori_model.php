@@ -31,9 +31,10 @@ class kategori_model
 
     public function add($data)
     {
-        $query = "INSERT INTO kategori (nama_kategori, keterangan) VALUES (:nama, :keterangan)";
+        $query = "INSERT INTO kategori (nama_kategori, slug_kategori, keterangan) VALUES (:nama, :slug_kategori, :keterangan)";
         $this->db->query($query);
         $this->db->bind("nama", $data['nama']);
+        $this->db->bind("slug_kategori", $data['slug']);
         $this->db->bind("keterangan", $data['keterangan']);
 
         $this->db->execute();
@@ -43,14 +44,25 @@ class kategori_model
     public function edit($data, $id_kategori)
     {
         $query = "UPDATE kategori
-              SET nama_kategori = :nama, keterangan = :keterangan WHERE id_kategori = :id_kategori";
+              SET nama_kategori = :nama, slug_kategori = :slug_kategori, keterangan = :keterangan WHERE id_kategori = :id_kategori";
 
         $this->db->query($query);
         $this->db->bind("nama", $data['nama']);
+        $this->db->bind("slug_kategori", $data['slug']);
         $this->db->bind("keterangan", $data['keterangan']);
         $this->db->bind('id_kategori', $id_kategori);
 
         $this->db->execute();
+        return $this->db->rowCount();
+    }
+
+    public function delete($id_kategori)
+    {
+        $query = "DELETE FROM kategori WHERE id_kategori = :id_kategori";
+        $this->db->query($query);
+        $this->db->bind("id_kategori", $id_kategori);
+        $this->db->execute();
+
         return $this->db->rowCount();
     }
 }

@@ -14,7 +14,7 @@ class artikel extends Controller
             $data['kategoris'] = $this->model('artikel_model')->loadKategori();
             $data['penuliss'] = $this->model('artikel_model')->loadPenulis();
             $this->view('templates/header', $data);
-            $this->view('artikel/index', $data);
+            $this->view('dashboard/artikel/index', $data);
         } else {
             header('Location: ' . BASEURL . '/login');
             exit;
@@ -23,6 +23,7 @@ class artikel extends Controller
 
     function tanggal_indonesia()
     {
+        date_default_timezone_set('Asia/Jakarta');
         $nama_hari = array('Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu');
 
         $nama_bulan = array(
@@ -35,8 +36,10 @@ class artikel extends Controller
         $tanggal = date('d');
         $bulan = date('n');
         $tahun = date('Y');
+        $jam = date('H');
+        $menit = date('i');
 
-        $tanggal_indonesia = $nama_hari[$hari] . ', ' . $tanggal . ' ' . $nama_bulan[$bulan - 1] . ' ' . $tahun;
+        $tanggal_indonesia = $nama_hari[$hari] . ', ' . $tanggal . ' ' . $nama_bulan[$bulan - 1] . ' ' . $tahun . ' | ' . $jam . ':' . $menit;
 
         return $tanggal_indonesia;
     }
@@ -115,7 +118,7 @@ class artikel extends Controller
                 $new_file_name = $_POST['slug'] . '.' . $old_file_extension;
                 $old_file_path = $file_path . $_POST['image-lawas'];
                 $new_file_path = $file_path . $new_file_name;
-                
+
                 if (file_exists($old_file_path)) {
                     if (rename($old_file_path, $new_file_path)) {
                         $_POST['image'] = $new_file_name;

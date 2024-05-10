@@ -11,7 +11,7 @@ class penulis extends Controller
             $data['prevPage'] = ($halaman > 1) ?  $halaman - 1 : 1;
             $data['nextPage'] = ($halaman > $data['pagination']) ?  $halaman + 1 : $data['pagination'];
             $this->view('templates/header', $data);
-            $this->view('penulis/index', $data);
+            $this->view('dashboard/penulis/index', $data);
         } else {
             header('Location: ' . BASEURL . '/login');
             exit;
@@ -61,9 +61,9 @@ class penulis extends Controller
     public function delete($id_penulis)
     {
         if ($this->model('penulis_model')->delete($id_penulis) > 0) {
-            Flasher::setFlash('You have successfully ', 'delete', 'success');
+            Flasher::setFlash('Kamu berhasil ', 'menghapus penulis', 'success');
         } else {
-            Flasher::setFlash('You failed to ', 'delete', 'danger');
+            Flasher::setFlash('Kamu gagal ', 'menghapus penulis', 'danger');
         }
         header('Location: ' . BASEURL . '/penulis');
         exit;

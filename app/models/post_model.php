@@ -11,9 +11,11 @@ class post_model
 
     public function show($slug)
     {
-        $query = "SELECT artikel.*, penulis.nama 
+        $query = "SELECT artikel.*, penulis.nama, kategori.nama_kategori, kategori.slug_kategori
         FROM artikel
-        JOIN penulis ON artikel.id_penulis = penulis.id_penulis
+        JOIN kontributor ON artikel.id_artikel = kontributor.id_artikel 
+        JOIN penulis ON kontributor.id_penulis = penulis.id_penulis 
+        JOIN kategori ON kontributor.id_kategori = kategori.id_kategori
         WHERE artikel.slug = :slug";
         $this->db->query($query);
         $this->db->bind("slug", $slug);

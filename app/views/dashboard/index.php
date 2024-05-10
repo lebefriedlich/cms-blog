@@ -23,7 +23,6 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading"></div>
                             <a class="nav-link" href="<?= BASEURL ?>/dashboard">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
@@ -55,30 +54,30 @@
                         <div class="row">
                             <div class="col-xl-4 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Penulis</div>
-                                    <div class="card-body"><?= $data['jumlahPenulis']['0'] ?> Penulis</div>
+                                    <div class="card-body fs-2">Penulis</div>
+                                    <div class="card-body">Jumlah: <?= $data['jumlahPenulis']['0'] ?> Penulis</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="<?= BASEURL; ?>/penulis">Lihat Rincian</a>
+                                        <a class="small text-white stretched-link text-decoration-none" href="<?= BASEURL; ?>/penulis">Lihat Rincian</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Kategori</div>
-                                    <div class="card-body"><?= $data['jumlahKategori']['0'] ?> Kategori</div>
+                                    <div class="card-body fs-2">Kategori</div>
+                                    <div class="card-body">Jumlah: <?= $data['jumlahKategori']['0'] ?> Kategori</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="<?= BASEURL; ?>/kategori">Lihat Rincian</a>
+                                        <a class="small text-white stretched-link text-decoration-none" href="<?= BASEURL; ?>/kategori">Lihat Rincian</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Artikel</div>
-                                    <div class="card-body"><?= $data['jumlahArtikel']['0'] ?> Artikel</div>
+                                    <div class="card-body fs-2">Artikel</div>
+                                    <div class="card-body">Jumlah: <?= $data['jumlahArtikel']['0'] ?> Artikel</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="<?= BASEURL; ?>/artikel">Lihat Rincian</a>
+                                        <a class="small text-white stretched-link text-decoration-none" href="<?= BASEURL; ?>/artikel">Lihat Rincian</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>

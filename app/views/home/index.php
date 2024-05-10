@@ -31,116 +31,105 @@
     </header>
     <!-- Page content-->
     <div class="container">
+        <!-- <?php var_dump($data) ?> -->
         <div class="row">
             <!-- Blog entries-->
             <div class="col-lg-8">
                 <!-- Featured blog post-->
                 <div class="card mb-4">
-                    <?php if ($_SERVER['REQUEST_URI'] == "/cms-blog/public/home" || $_SERVER['REQUEST_URI'] == "/cms-blog/public/home/1") : ?>
-                        <a href="#!"><img class="card-img-top" src="/cms-blog/app/assets/artikel/<?= $data['article'][0]['image']; ?>" alt="..." /></a>
+                    <?php if (isset($data['artikelUtama'])) : ?>
+                        <a href="#!"><img class="card-img-top" src="/cms-blog/app/assets/artikel/<?= $data['artikelUtama'][0]['gambar']; ?>" alt="..." /></a>
                         <div class="card-body">
-                            <div class="small text-muted"><?= $data['article'][0]['date_upload'] ?></div>
-                            <h2 class="card-title"><?= $data['article'][0]['judul'] ?></h2>
-                            <p class="card-text"><?= $data['article'][0]['summary'] ?></p>
-                            <a class="btn btn-primary" href="<?= BASEURL; ?>/post/index/<?= $data['article'][0]['slug'] ?>">Read more →</a>
+                            <div class="small text-muted"><?= $data['artikelUtama'][0]['hari_tanggal'] ?></div>
+                            <h2 class="card-title"><?= $data['artikelUtama'][0]['judul'] ?></h2>
+                            <!-- <p class="card-text"><?= $data['artikelUtama'][0]['summary'] ?></p> -->
+                            <a class="btn btn-primary" href="<?= BASEURL; ?>/post/index/<?= $data['artikelUtama'][0]['slug'] ?>">Baca lebih lanjut →</a>
                         </div>
                     <?php endif; ?>
                 </div>
                 <!-- Nested row for non-featured blog posts-->
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card mb-4">
-                            <a href="#!"><img class="card-img-top" src="/cms-blog/app/assets/artikel/<?= $data['article'][1]['image']; ?>" alt="..." /></a>
-                            <div class="card-body">
-                                <div class="small text-muted"><?= $data['article'][1]['date_upload'] ?></div>
-                                <h2 class="card-title h4"><?= $data['article'][1]['judul'] ?></h2>
-                                <p class="card-text"><?= $data['article'][1]['summary'] ?></p>
-                                <a class="btn btn-primary" href="#!">Read more →</a>
+                    <?php foreach ($data['article'] as $article) : ?>
+                        <div class="col-lg-6">
+                            <div class="card mb-4">
+                                <a href="#!"><img class="card-img-top" src="/cms-blog/app/assets/artikel/<?= $article['gambar']; ?>" alt="..." style="width: 100%; height: 250px;" /></a>
+                                <div class="card-body">
+                                    <div class="small text-muted"><?= $article['hari_tanggal'] ?></div>
+                                    <h2 class="card-title h4"><?= $article['judul'] ?></h2>
+                                    <!-- <p class="card-text"><?= $article['summary'] ?></p> -->
+                                    <a class="btn btn-primary" href="<?= BASEURL; ?>/post/index/<?= $article['slug'] ?>">Baca lebih lanjut →</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="card mb-4">
-                            <a href="#!"><img class="card-img-top" src="/cms-blog/app/assets/artikel/<?= $data['article'][2]['image']; ?>" alt="..." /></a>
-                            <div class="card-body">
-                                <div class="small text-muted"><?= $data['article'][2]['date_upload'] ?></div>
-                                <h2 class="card-title h4"><?= $data['article'][2]['judul'] ?></h2>
-                                <p class="card-text"><?= $data['article'][2]['summary'] ?></p>
-                                <a class="btn btn-primary" href="#!">Read more →</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card mb-4">
-                            <a href="#!"><img class="card-img-top" src="/cms-blog/app/assets/artikel/<?= $data['article'][2]['image']; ?>" alt="..." /></a>
-                            <div class="card-body">
-                                <div class="small text-muted"><?= $data['article'][2]['date_upload'] ?></div>
-                                <h2 class="card-title h4"><?= $data['article'][2]['judul'] ?></h2>
-                                <p class="card-text"><?= $data['article'][2]['summary'] ?></p>
-                                <a class="btn btn-primary" href="#!">Read more →</a>
-                            </div>
-                        </div>
-                        <div class="card mb-4">
-                            <a href="#!"><img class="card-img-top" src="/cms-blog/app/assets/artikel/<?= $data['article'][2]['image']; ?>" alt="..." /></a>
-                            <div class="card-body">
-                                <div class="small text-muted"><?= $data['article'][2]['date_upload'] ?></div>
-                                <h2 class="card-title h4"><?= $data['article'][2]['judul'] ?></h2>
-                                <p class="card-text"><?= $data['article'][2]['summary'] ?></p>
-                                <a class="btn btn-primary" href="#!">Read more →</a>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
-                <!-- Pagination-->
-                <nav aria-label="Pagination">
-                    <hr class="my-0" />
-                    <ul class="pagination justify-content-center my-4">
-                        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
-                        <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                        <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">Older</a></li>
-                    </ul>
-                </nav>
+                <!-- Pagination for home-->
+                <?php if ($data["pagination"] > 1) : ?>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination pagination-lg justify-content-center">
+                            <?php if ($data['currentPage'] > 1) : ?>
+                                <li class="page-item">
+                                    <a class="page-link" href="<?= BASEURL; ?>/home/index/<?= $data['prevPage'] ?>" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                            <?php for ($i = 1; $i <= $data["pagination"]; $i++) : ?>
+                                <li class="page-item <?= ($i == $data['currentPage']) ? 'active' : '' ?>">
+                                    <a class="page-link" href="<?= BASEURL; ?>/home/index/<?= $i ?>"><?= $i; ?></a>
+                                </li>
+                            <?php endfor; ?>
+                            <?php if ($data['currentPage'] < $data['pagination']) : ?>
+                                <li class="page-item">
+                                    <a class="page-link" href="<?= BASEURL; ?>/home/index/<?= $data['nextPage'] ?>" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                        </ul>
+                    </nav>
+                <?php endif; ?>
             </div>
             <!-- Side widgets-->
             <div class="col-lg-4">
                 <!-- Search widget-->
                 <div class="card mb-4">
-                    <div class="card-header">Search</div>
+                    <div class="card-header">Cari</div>
                     <div class="card-body">
                         <div class="input-group">
-                            <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                            <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+                            <input class="form-control" type="text" placeholder="Masukkan Pencarian" aria-label="Enter search term..." aria-describedby="button-search" />
+                            <button class="btn btn-primary" id="button-search" type="button">Cari!</button>
                         </div>
                     </div>
                 </div>
                 <!-- Categories widget-->
                 <div class="card mb-4">
-                    <div class="card-header">Categories</div>
+                    <div class="card-header">Kategori</div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">Web Design</a></li>
-                                    <li><a href="#!">HTML</a></li>
-                                    <li><a href="#!">Freebies</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">JavaScript</a></li>
-                                    <li><a href="#!">CSS</a></li>
-                                    <li><a href="#!">Tutorials</a></li>
-                                </ul>
-                            </div>
+                            <?php foreach ($data['kategoris'] as $kategori) : ?>
+                                <div class="col-sm-6">
+                                    <ul class="list-group mb-0 ms-4">
+                                        <li><a href="<?= BASEURL ?>/home/kategori/<?= $kategori['slug_kategori'] ?>" class="text-decoration-none text-black"><?= $kategori['nama_kategori'] ?></a></li>
+                                    </ul>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
                 <!-- Side widget-->
                 <div class="card mb-4">
-                    <div class="card-header">Side Widget</div>
-                    <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
+                    <div class="card-header">About</div>
+                    <div class="card-body" style="text-align: justify; text-justify: inter-word;">Selamat datang di Pasuruan Wonderful! <br><br>
+
+                        Kami adalah destinasi daring yang menawarkan artikel-artikel tentang wisata alam, sejarah, dan religi di Pasuruan. Temukan keindahan alam yang menakjubkan, jejak sejarah yang mempesona, dan tempat-tempat suci yang memberikan kedamaian bersama kami.
+
+                        Mari menjelajahi keajaiban Indonesia bersama-sama!
+
+                        Salam hangat,
+                        <br><br>
+                        Maulana Haekal Noval Akbar
+                    </div>
                 </div>
             </div>
         </div>

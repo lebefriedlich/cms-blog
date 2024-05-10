@@ -1,24 +1,6 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link href="<?= BASEURL; ?>/css/style_dashboard.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
-        <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/super-build/ckeditor.js"></script>
-        <script src="<?= BASEURL; ?>/js/script_ckeditor.js"></script>
-        <style>
-            #container {
-                width: 1000px;
-                margin: 20px auto;
-            }
-
-            .ck-editor__editable[role="textbox"] {
-                min-height: 200px;
-            }
-
-            .ck-content .image {
-                max-width: 80%;
-                margin: 20px auto;
-            }
-        </style>
         </head>
 
         <body class="sb-nav-fixed">
@@ -76,103 +58,64 @@
                 <div id="layoutSidenav_content">
                     <main>
                         <div class="container-fluid px-4 mt-4">
-                            <!-- <?php
-                                    if (isset($_SESSION['error'])) {
-                                        var_dump($_SESSION['error']);
-                                    }
-                                    ?> -->
-                            <!-- <?php
-                                    var_dump($data['artikels']);
-                                    ?> -->
-                            <h1 class="mb-4">Artikel</h1>
+                            <h1 class="mb-4">Kategori</h1>
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-table me-1"></i>
-                                    Data Artikel
+                                    Data Kategori
                                 </div>
                                 <div class="card-body">
                                     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addPenulis">
-                                        <i class="bi bi-plus-circle"></i> Tambah Artikel
+                                        <i class="bi bi-plus-circle"></i> Tambah Kategori
                                     </button>
                                     <table class="table table-dark table-striped-columns">
                                         <thead class="table-light fs-6">
                                             <tr>
                                                 <th scope="col">No</th>
-                                                <th scope="col">Hari, Tanggal</th>
-                                                <th scope="col">Judul</th>
-                                                <th scope="col">Isi</th>
-                                                <th scope="col">Gambar</th>
+                                                <th scope="col">Nama Kategori</th>
+                                                <th scope="col">Keterangan</th>
                                                 <th scope="col">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody class="fs-6">
                                             <?php
                                             $i = 1;
-                                            foreach ($data['artikels'] as $artikel) : ?>
-                                                <p id="countEditor" class="visually-hidden"><?= $i ?></p>
+                                            foreach ($data['kategoris'] as $kategori) : ?>
                                                 <tr>
                                                     <td><?= $i ?></td>
-                                                    <td><?= $artikel['hari_tanggal'] ?></td>
-                                                    <td><?= $artikel['judul'] ?></td>
-                                                    <td><?= $artikel['isi'] ?></td>
-                                                    <td><img src="/cms-blog/app/assets/artikel/<?= $artikel['gambar'] ?>" class="rounded mx-auto d-block w-100" alt="..."></td>
+                                                    <td><?= $kategori['nama_kategori'] ?></td>
+                                                    <td><?= $kategori['keterangan'] ?></td>
                                                     <td>
-                                                        <a href="" class="text-decoration-none btn btn-primary btn-sm m-1" data-bs-toggle="modal" data-bs-target="#EditModal<?= $artikel['id_artikel']; ?>">
+                                                        <a href="" class="text-decoration-none btn btn-primary btn-sm m-1" data-bs-toggle="modal" data-bs-target="#EditModal<?= $kategori['id_kategori']; ?>">
                                                             <i class="bi bi-pencil-square"></i>
                                                         </a>
-                                                        <a href="" class="text-decoration-none btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $artikel['id_artikel']; ?>">
+                                                        <a href="" class="text-decoration-none btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $kategori['id_kategori']; ?>">
                                                             <i class="bi bi-trash3"></i>
                                                         </a>
                                                     </td>
                                                 </tr>
 
-                                                <div class="modal fade" id="EditModal<?= $artikel['id_artikel']; ?>" tabindex="-1" aria-labelledby="EditModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-xl">
+                                                <div class="modal fade" id="EditModal<?= $kategori['id_kategori']; ?>" tabindex="-1" aria-labelledby="EditModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="EditModalLabel">Edit Artikel</h1>
+                                                                <h1 class="modal-title fs-5" id="EditModalLabel">Edit User</h1>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form action="<?= BASEURL; ?>/artikel/edit/<?= $artikel['id_artikel'] . '/' . $artikel['id_kontributor'] ?>" method="post" enctype="multipart/form-data">
-                                                                    <input type="text" name="id_artikel" class="visually-hidden" value="<?= $artikel['id_artikel'] ?>">
+                                                                <form action="<?= BASEURL; ?>/kategori/edit/<?= $kategori['id_kategori']; ?>" method="post">
                                                                     <div class="mb-3">
-                                                                        <label for="judul" class="form-label">Judul:</label>
-                                                                        <input type="text" name="judul" id="judul-edit" class="form-control" value="<?= $artikel['judul'] ?>" required />
-                                                                    </div>
-                                                                    <input type="text" name="slug" id="slug-edit" class="visually-hidden" value="<?= $artikel['slug'] ?>" required />
-                                                                    <div class="mb-3">
-                                                                        <label for="kategori" class="form-label">Kategori</label>
-                                                                        <select id="kategori" class="form-select" name="kategori" required>
-                                                                            <option value="<?= $artikel['id_kategori'] ?>" selected><?= $artikel['nama_kategori'] ?></option>
-                                                                            <?php foreach ($data['kategoris'] as $kategori) : ?>
-                                                                                <?php if ($kategori['id_kategori'] == $artikel['id_kategori']) continue; ?>
-                                                                                <option value="<?= $kategori['id_kategori'] ?>"><?= $kategori['nama_kategori'] ?></option>
-                                                                            <?php endforeach; ?>
-                                                                        </select>
+                                                                        <label for="nama" class="form-label">Nama Kategori:</label>
+                                                                        <input type="text" name="nama" id="nama-edit" class="form-control" value="<?= $kategori['nama_kategori'] ?>" required />
+                                                                        <input type="text" name="slug" id="slug-edit" class="form-control visually-hidden" value="<?= $kategori['slug_kategori'] ?>" required />
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="penulis" class="form-label">Penulis</label>
-                                                                        <select id="penulis" class="form-select" name="penulis" required>
-                                                                            <option value="<?= $artikel['id_penulis'] ?>" selected><?= $artikel['nama_penulis'] ?></option>
-                                                                            <?php foreach ($data['penuliss'] as $penulis) : ?>
-                                                                                <?php if ($penulis['id_penulis'] == $artikel['id_penulis']) continue; ?>
-                                                                                <option value="<?= $penulis['id_penulis'] ?>"><?= $penulis['nama'] ?></option>
-                                                                            <?php endforeach; ?>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="mb-3">
-                                                                        <label for="editor<?= $i ?>" class="form-label">Isi</label>
-                                                                        <textarea name="isi" id="editor<?= $i ?>"><?= $artikel['isi'] ?>"</textarea>
-                                                                    </div>
-                                                                    <div class="mb-3">
-                                                                        <label for="image" class="form-label">Gambar :</label>
-                                                                        <input type="file" name="image" class="form-control" />
-                                                                        <input type="text" name="image-lawas" class="visually-hidden" value="<?= $artikel['gambar'] ?>">
+                                                                        <label for="keterangan" class="form-label">Keterangan :</label>
+                                                                        <textarea name="keterangan" class="form-control" required><?= $kategori['keterangan'] ?></textarea>
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                        <button type="submit" class="btn btn-primary" name="edit">Edit</button>
+                                                                        <button type="submit" class="btn btn-primary" name="edit">Save changes</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
@@ -180,7 +123,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="modal fade" id="deleteModal<?= $artikel['id_artikel']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                                <div class="modal fade" id="deleteModal<?= $kategori['id_kategori']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -192,7 +135,7 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                <a id="deleteLink" href="<?= BASEURL; ?>/artikel/delete/<?= $artikel['id_artikel'] ?>/<?= $artikel['id_kontributor'] ?>/<?= $artikel['gambar'] ?>" class="btn btn-danger">Hapus</a>
+                                                                <a id="deleteLink" href="<?= BASEURL; ?>/kategori/delete/<?= $kategori['id_kategori']; ?>" class="btn btn-danger">Hapus</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -207,19 +150,19 @@
                                             <ul class="pagination pagination-lg justify-content-center">
                                                 <?php if ($data['currentPage'] > 1) : ?>
                                                     <li class="page-item">
-                                                        <a class="page-link" href="<?= BASEURL; ?>/artikel/index/<?= $data['prevPage'] ?>" aria-label="Previous">
+                                                        <a class="page-link" href="<?= BASEURL; ?>/kategori/index/<?= $data['prevPage'] ?>" aria-label="Previous">
                                                             <span aria-hidden="true">&laquo;</span>
                                                         </a>
                                                     </li>
                                                 <?php endif; ?>
                                                 <?php for ($i = 1; $i <= $data["pagination"]; $i++) : ?>
                                                     <li class="page-item <?= ($i == $data['currentPage']) ? 'active' : '' ?>">
-                                                        <a class="page-link" href="<?= BASEURL; ?>/artikel/index/<?= $i ?>"><?= $i; ?></a>
+                                                        <a class="page-link" href="<?= BASEURL; ?>/kategori/index/<?= $i ?>"><?= $i; ?></a>
                                                     </li>
                                                 <?php endfor; ?>
                                                 <?php if ($data['currentPage'] < $data['pagination']) : ?>
                                                     <li class="page-item">
-                                                        <a class="page-link" href="<?= BASEURL; ?>/artikel/index/<?= $data['nextPage'] ?>" aria-label="Next">
+                                                        <a class="page-link" href="<?= BASEURL; ?>/kategori/index/<?= $data['nextPage'] ?>" aria-label="Next">
                                                             <span aria-hidden="true">&raquo;</span>
                                                         </a>
                                                     </li>
@@ -235,42 +178,22 @@
             </div>
 
             <div class="modal fade" id="addPenulis" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
+                <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Artikel</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Kategori</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="<?= BASEURL; ?>/artikel/add" method="post" enctype="multipart/form-data">
+                            <form action="<?= BASEURL; ?>/kategori/add" method="post">
                                 <div class="mb-3">
-                                    <label for="judul" class="form-label">Judul:</label>
-                                    <input type="text" name="judul" id="judul-add" class="form-control" required />
-                                </div>
-                                <input type="text" name="slug" id="slug-add" class="visually-hidden" required />
-                                <div class="mb-3">
-                                    <label for="kategori" class="form-label">Kategori</label>
-                                    <select id="kategori" class="form-select" name="kategori" required>
-                                        <?php foreach ($data['kategoris'] as $kategori) : ?>
-                                            <option value="<?= $kategori['id_kategori'] ?>"><?= $kategori['nama_kategori'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                                    <label for="nama" class="form-label">Nama Kategori:</label>
+                                    <input type="text" name="nama" id="nama-add" class="form-control" required />
+                                    <input type="text" name="slug" id="slug-add" class="form-control visually-hidden" />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="penulis" class="form-label">Penulis</label>
-                                    <select id="penulis" class="form-select" name="penulis" required>
-                                        <?php foreach ($data['penuliss'] as $penulis) : ?>
-                                            <option value="<?= $penulis['id_penulis'] ?>"><?= $penulis['nama'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="editor" class="form-label">Isi</label>
-                                    <textarea name="isi" id="editor"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="image" class="form-label">Gambar :</label>
-                                    <input type="file" name="image" class="form-control" required />
+                                    <label for="keterangan" class="form-label">Keterangan :</label>
+                                    <textarea name="keterangan" class="form-control" required>Artikel ini menyajikan informasi mendalam tentang .............., mengulas dengan detail dan menyeluruh berbagai aspek yang terkait dengan topik tersebut, termasuk sejarahnya, perkembangan terbaru, implikasi praktisnya, serta pandangan dari berbagai ahli dan praktisi di bidangnya.</textarea>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -290,42 +213,25 @@
                     return string;
                 }
 
-                const judulAdd = document.getElementById('judul-add');
+                const namaAdd = document.getElementById('nama-add');
                 const slugAdd = document.getElementById('slug-add');
 
-                judulAdd.addEventListener('blur', function() {
-                    const judulValue = judulAdd.value;
-                    const slugValue = slugify(judulValue);
+                namaAdd.addEventListener('blur', function() {
+                    const namaValue = namaAdd.value;
+                    const slugValue = slugify(namaValue);
                     slugAdd.value = slugValue;
                 });
 
-                const judulEdit = document.getElementById('judul-edit');
+                const namaEdit = document.getElementById('nama-edit');
                 const slugEdit = document.getElementById('slug-edit');
 
-                judulEdit.addEventListener('blur', function() {
-                    const judulValue = judulEdit.value;
-                    const slugValue = slugify(judulValue);
+                namaEdit.addEventListener('blur', function() {
+                    const namaValue = namaEdit.value;
+                    const slugValue = slugify(namaValue);
                     slugEdit.value = slugValue;
                 });
-
-                ClassicEditor
-                    .create(document.querySelector('#editor'))
-                    .catch(error => {
-                        console.error(error);
-                    });
-
-                const countEditorElement = document.getElementById('countEditor');
-
-                const countEditorData = countEditorElement.textContent;
-                for (let i = countEditorData; i <= countEditorData + 1; i++) {
-                    ClassicEditor
-                        .create(document.querySelector(`#editor${i}`))
-                        .catch(error => {
-                            console.error(error);
-                        });
-                }
             </script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
             <script src="<?= BASEURL; ?>/js/script_dashboard.js"></script>
         </body>
 

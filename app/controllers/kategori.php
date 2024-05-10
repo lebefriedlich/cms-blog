@@ -12,7 +12,7 @@ class kategori extends Controller
             $data['prevPage'] = ($halaman > 1) ?  $halaman - 1 : 1;
             $data['nextPage'] = ($halaman > $data['pagination']) ?  $halaman + 1 : $data['pagination'];
             $this->view('templates/header', $data);
-            $this->view('kategori/index', $data);
+            $this->view('dashboard/kategori/index', $data);
         } else {
             header('Location: ' . BASEURL . '/login');
             exit;
@@ -45,5 +45,16 @@ class kategori extends Controller
             header('Location: ' . BASEURL . '/kategori');
             exit;
         }
+    }
+
+    public function delete($id_kategori)
+    {
+        if ($this->model('kategori_model')->delete($id_kategori) > 0) {
+            Flasher::setFlash('Kamu berhasil ', 'menghapus kategori', 'success');
+        } else {
+            Flasher::setFlash('Kamu gagal ', 'menghapus kategori', 'danger');
+        }
+        header('Location: ' . BASEURL . '/kategori');
+        exit;
     }
 }

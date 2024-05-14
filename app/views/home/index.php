@@ -16,7 +16,7 @@
     <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="<?= BASEURL; ?>/home">Start Bootstrap</a>
+            <a class="navbar-brand" href="<?= BASEURL; ?>/home"><img src="<?= BASEURL; ?>/images/pasuruan Wonderful.png" style="width: 200px; height: 50px;"></a>
         </div>
     </nav>
 
@@ -24,8 +24,8 @@
     <header class="py-5 bg-light border-bottom mb-4">
         <div class="container">
             <div class="text-center my-5">
-                <h1 class="fw-bolder">Welcome to Blog Home!</h1>
-                <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
+                <h1 class="fw-bolder">Selamat Datang di Wonderful Pasuruan!</h1>
+                <p class="lead mb-0">Temukan pesona wisata alam yang memukau dan jejak sejarah yang mempesona bersama Pasuruan Wonderful.</p>
             </div>
         </div>
     </header>
@@ -38,12 +38,12 @@
                 <!-- Featured blog post-->
                 <div class="card mb-4">
                     <?php if (isset($data['artikelUtama'])) : ?>
-                        <a href="#!"><img class="card-img-top" src="/cms-blog/app/assets/artikel/<?= $data['artikelUtama'][0]['gambar']; ?>" alt="..." /></a>
+                        <a href="#!"><img class="card-img-top" src="/cms-blog/app/assets/artikel/<?= $data['artikelUtama']['gambar']; ?>" alt="..." /></a>
                         <div class="card-body">
-                            <div class="small text-muted"><?= $data['artikelUtama'][0]['hari_tanggal'] ?></div>
-                            <h2 class="card-title"><?= $data['artikelUtama'][0]['judul'] ?></h2>
-                            <!-- <p class="card-text"><?= $data['artikelUtama'][0]['summary'] ?></p> -->
-                            <a class="btn btn-primary" href="<?= BASEURL; ?>/post/index/<?= $data['artikelUtama'][0]['slug'] ?>">Baca lebih lanjut →</a>
+                            <div class="small text-muted"><?= $data['artikelUtama']['hari_tanggal'] ?></div>
+                            <h2 class="card-title"><?= $data['artikelUtama']['judul'] ?></h2>
+                            <!-- <p class="card-text"><?= $data['artikelUtama']['summary'] ?></p> -->
+                            <a class="btn btn-primary" href="<?= BASEURL; ?>/post/index/<?= $data['artikelUtama']['slug'] ?>">Baca lebih lanjut →</a>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -120,9 +120,9 @@
                 <!-- Side widget-->
                 <div class="card mb-4">
                     <div class="card-header">About</div>
-                    <div class="card-body" style="text-align: justify; text-justify: inter-word;">Selamat datang di Pasuruan Wonderful! <br><br>
+                    <div class="card-body" style="text-align: justify;">Selamat datang di Wonderful Pasuruan! <br><br>
 
-                        Kami adalah destinasi daring yang menawarkan artikel-artikel tentang wisata alam, sejarah, dan religi di Pasuruan. Temukan keindahan alam yang menakjubkan, jejak sejarah yang mempesona, dan tempat-tempat suci yang memberikan kedamaian bersama kami.
+                        Kami adalah destinasi daring yang menawarkan artikel-artikel tentang wisata alam dan sejarah di Pasuruan. Temukan keindahan alam yang menakjubkan dan jejak sejarah yang mempesona.
 
                         Mari menjelajahi keajaiban Indonesia bersama-sama!
 

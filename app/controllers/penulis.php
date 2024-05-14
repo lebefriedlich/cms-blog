@@ -4,7 +4,7 @@ class penulis extends Controller
     public function index($halaman = 1)
     {
         if (isset($_SESSION['login'])) {
-            $data['judul'] = 'Penulis';
+            $data['judul'] = 'Penulis Wonderful Pasuruan';
             $data['penuliss'] = $this->model('penulis_model')->loadPenulis($halaman);
             $data['pagination'] = $this->model('penulis_model')->pagination();
             $data['currentPage'] = $halaman;

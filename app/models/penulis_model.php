@@ -21,7 +21,7 @@ class penulis_model
     public function pagination()
     {
         $jumlahDataPerHalaman = 5;
-        $this->db->query("SELECT * FROM artikel");
+        $this->db->query("SELECT * FROM penulis");
         $this->db->execute();
         $jumlahData = $this->db->Rowcount();
         $totalPages = ceil($jumlahData / $jumlahDataPerHalaman);

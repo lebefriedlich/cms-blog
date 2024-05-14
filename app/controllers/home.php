@@ -3,7 +3,7 @@ class home extends Controller
 {
     public function index($halaman = 1)
     {
-        $data['judul'] = 'Blog Home';
+        $data['judul'] = 'Wonderful Pasuruan';
         if ($halaman == 1) {
             $data['artikelUtama'] = $this->model('home_model')->artikelUtama();
         }

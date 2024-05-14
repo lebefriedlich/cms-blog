@@ -15,7 +15,7 @@ class home_model
         ORDER BY id_artikel DESC
         LIMIT 0, 1";
         $this->db->query($query);
-        return $this->db->resultSet();
+        return $this->db->single();
     }
 
     public function artikel($halaman)

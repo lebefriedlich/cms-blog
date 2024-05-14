@@ -4,7 +4,7 @@ class login extends Controller
     public function index()
     {
         if (!isset($_SESSION['login'])) {
-            $data['judul'] = 'Login Page';
+            $data['judul'] = 'Wonderful Pasuruan - Login';
             $this->view('templates/header', $data);
             $this->view('login/index');
             $this->view('templates/footer');

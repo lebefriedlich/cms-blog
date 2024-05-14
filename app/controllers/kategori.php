@@ -5,7 +5,7 @@ class kategori extends Controller
     public function index($halaman = 1)
     {
         if (isset($_SESSION['login'])) {
-            $data['judul'] = 'Kategori';
+            $data['judul'] = 'Kategori Wonderful Pasuruan';
             $data['kategoris'] = $this->model('kategori_model')->loadKategori($halaman);
             $data['pagination'] = $this->model('kategori_model')->pagination();
             $data['currentPage'] = $halaman;

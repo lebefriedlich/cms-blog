@@ -6,6 +6,7 @@ class kategori extends Controller
     {
         if (isset($_SESSION['login'])) {
             $data['judul'] = 'Kategori Wonderful Pasuruan';
+            $data['admin'] = $_SESSION['admin'];
             $data['kategoris'] = $this->model('kategori_model')->loadKategori($halaman);
             $data['pagination'] = $this->model('kategori_model')->pagination();
             $data['currentPage'] = $halaman;

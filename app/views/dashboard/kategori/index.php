@@ -44,7 +44,7 @@
                         </div>
                         <div class="sb-sidenav-footer">
                             <div class="small">Masuk Sebagai</div>
-                            <?= $_SESSION['admin']['nama'] ?>
+                            <?= $data['admin']['email'] ?>
                         </div>
                     </nav>
                 </div>
@@ -82,7 +82,7 @@
                                             $i = 1;
                                             foreach ($data['kategoris'] as $kategori) : ?>
                                                 <tr>
-                                                    <td><?= $i ?></td>
+                                                    <td><?= $i++ ?></td>
                                                     <td><?= $kategori['nama_kategori'] ?></td>
                                                     <td><?= $kategori['keterangan'] ?></td>
                                                     <td>
@@ -140,9 +140,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            <?php
-                                                $i++;
-                                            endforeach; ?>
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                     <?php if ($data["pagination"] > 1) : ?>

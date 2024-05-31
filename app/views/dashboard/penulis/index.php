@@ -44,7 +44,7 @@
                         </div>
                         <div class="sb-sidenav-footer">
                             <div class="small">Masuk Sebagai</div>
-                            <?= $_SESSION['admin']['nama'] ?>
+                            <?= $data['admin']['email'] ?>
                         </div>
                     </nav>
                 </div>
@@ -83,7 +83,7 @@
                                             $i = 1;
                                             foreach ($data['penuliss'] as $penulis) : ?>
                                                 <tr>
-                                                    <td><?= $i ?></td>
+                                                    <td><?= $i++ ?></td>
                                                     <td><?= $penulis['nama'] ?></td>
                                                     <td><?= $penulis['email'] ?></td>
                                                     <td><?= $penulis['password'] ?></td>
@@ -146,9 +146,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            <?php
-                                                $i++;
-                                            endforeach; ?>
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                     <?php if ($data["pagination"] > 1) : ?>

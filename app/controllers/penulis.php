@@ -5,6 +5,7 @@ class penulis extends Controller
     {
         if (isset($_SESSION['login'])) {
             $data['judul'] = 'Penulis Wonderful Pasuruan';
+            $data['admin'] = $_SESSION['admin'];
             $data['penuliss'] = $this->model('penulis_model')->loadPenulis($halaman);
             $data['pagination'] = $this->model('penulis_model')->pagination();
             $data['currentPage'] = $halaman;

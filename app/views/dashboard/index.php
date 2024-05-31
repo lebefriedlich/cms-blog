@@ -43,7 +43,7 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Masuk Sebagai</div>
-                        <?= $_SESSION['admin']['nama'] ?>
+                        <?= $data['admin']['email'] ?>
                     </div>
                 </nav>
             </div>

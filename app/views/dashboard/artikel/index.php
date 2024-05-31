@@ -62,7 +62,7 @@
                         </div>
                         <div class="sb-sidenav-footer">
                             <div class="small">Masuk Sebagai</div>
-                            <?= $_SESSION['admin']['nama'] ?>
+                            <?= $data['admin']['email'] ?>
                         </div>
                     </nav>
                 </div>
@@ -102,7 +102,7 @@
                                             $i = 1;
                                             foreach ($data['artikels'] as $artikel) : ?>
                                                 <tr>
-                                                    <td id="countEditor"><?= $i ?></td>
+                                                    <td id="countEditor"><?= $i++ ?></td>
                                                     <td><?= $artikel['hari_tanggal'] ?></td>
                                                     <td><?= $artikel['judul'] ?></td>
                                                     <td><?= $artikel['isi'] ?></td>
@@ -127,8 +127,9 @@
                                                             <div class="modal-body">
                                                                 <form action="<?= BASEURL; ?>/artikel/edit/<?= $artikel['id_artikel'] . '/' . $artikel['id_kontributor'] ?>" method="post" enctype="multipart/form-data">
                                                                     <input type="text" name="id_artikel" class="visually-hidden" value="<?= $artikel['id_artikel'] ?>">
+                                                                    <input type="text" name="penulis" class="visually-hidden" value="<?= $artikel['id_penulis'] ?>">
                                                                     <div class="mb-3">
-                                                                        <label for="judul" class="form-label">Judul:</label>
+                                                                        <label for="judul" class="form-label">Judul</label>
                                                                         <input type="text" name="judul" id="judul-edit" class="form-control" value="<?= $artikel['judul'] ?>" required />
                                                                     </div>
                                                                     <input type="text" name="slug" id="slug-edit" class="visually-hidden" value="<?= $artikel['slug'] ?>" required />
@@ -144,13 +145,14 @@
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="penulis" class="form-label">Penulis</label>
-                                                                        <select id="penulis" class="form-select" name="penulis" required>
+                                                                        <input type="text" class="form-control" value="<?= $artikel['nama_penulis'] ?>" disabled>
+                                                                        <!-- <select id="penulis" class="form-select" name="penulis" required>
                                                                             <option value="<?= $artikel['id_penulis'] ?>" selected><?= $artikel['nama_penulis'] ?></option>
                                                                             <?php foreach ($data['penuliss'] as $penulis) : ?>
                                                                                 <?php if ($penulis['id_penulis'] == $artikel['id_penulis']) continue; ?>
                                                                                 <option value="<?= $penulis['id_penulis'] ?>"><?= $penulis['nama'] ?></option>
                                                                             <?php endforeach; ?>
-                                                                        </select>
+                                                                        </select> -->
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="editor<?= $i ?>" class="form-label">Isi</label>
@@ -188,9 +190,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            <?php
-                                                $i++;
-                                            endforeach; ?>
+                                            <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                     <?php if ($data["pagination"] > 1) : ?>
@@ -239,6 +239,7 @@
                                     <input type="text" name="judul" id="judul-add" class="form-control" required />
                                 </div>
                                 <input type="text" name="slug" id="slug-add" class="visually-hidden" required />
+                                <input type="text" name="penulis" class="visually-hidden" value="<?= $data['admin']['id_penulis'] ?>" required />
                                 <div class="mb-3">
                                     <label for="kategori" class="form-label">Kategori</label>
                                     <select id="kategori" class="form-select" name="kategori" required>
@@ -247,14 +248,14 @@
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <div class="mb-3">
+                                <!-- <div class="mb-3">
                                     <label for="penulis" class="form-label">Penulis</label>
                                     <select id="penulis" class="form-select" name="penulis" required>
                                         <?php foreach ($data['penuliss'] as $penulis) : ?>
                                             <option value="<?= $penulis['id_penulis'] ?>"><?= $penulis['nama'] ?></option>
                                         <?php endforeach; ?>
                                     </select>
-                                </div>
+                                </div> -->
                                 <div class="mb-3">
                                     <label for="editor" class="form-label">Isi</label>
                                     <textarea name="isi" id="editor"></textarea>

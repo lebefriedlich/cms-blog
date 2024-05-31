@@ -8,7 +8,7 @@
                 </div>
             </nav>
 
-            <div class="container position-absolute top-0 end-0 mt-5 me-2">
+            <div class="container position-absolute top-0 end-0 mt-5 me-2 pt-3">
                 <div class="row justify-content-end">
                     <div class="col-md-4 mt-3">
                         <?php Flasher::flash(); ?>

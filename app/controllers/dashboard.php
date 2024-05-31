@@ -5,6 +5,7 @@ class dashboard extends Controller
     {
         if (isset($_SESSION['login'])) {
             $data['judul'] = 'Dashboard';
+            $data['admin'] = $_SESSION['admin'];
             $data['jumlahPenulis'] = $this->model('dashboard_model')->jumlahPenulis();
             $data['jumlahKategori'] = $this->model('dashboard_model')->jumlahKategori();
             $data['jumlahArtikel'] = $this->model('dashboard_model')->jumlahArtikel();

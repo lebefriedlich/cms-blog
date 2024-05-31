@@ -8,24 +8,27 @@ class artikel_model
         $this->db = new Database();
     }
 
-    public function loadArtikel($halaman)
+    public function loadArtikel($halaman, $id_penulis)
     {
         $jumlahDataPerHalaman = 2;
         $awalData = ($jumlahDataPerHalaman * $halaman) - $jumlahDataPerHalaman;
 
-        $query = "SELECT a.*, ktb.id_kontributor,p.id_penulis, p.nama AS nama_penulis, k.id_kategori, k.nama_kategori
+        $query = "SELECT a.*, ktb.id_kontributor, p.id_penulis, p.nama AS nama_penulis, k.id_kategori, k.nama_kategori
         FROM artikel AS a
         JOIN kontributor AS ktb ON a.id_artikel = ktb.id_artikel
         JOIN kategori AS k ON ktb.id_kategori = k.id_kategori
-        JOIN penulis AS p ON ktb.id_penulis = p.id_penulis ORDER BY a.id_artikel DESC LIMIT $awalData, $jumlahDataPerHalaman";
+        JOIN penulis AS p ON ktb.id_penulis = p.id_penulis 
+        WHERE p.id_penulis = $id_penulis 
+        ORDER BY a.id_artikel DESC LIMIT $awalData, $jumlahDataPerHalaman";
         $this->db->query($query);
         return $this->db->resultSet();
     }
 
-    public function pagination()
+    public function pagination($id_penulis)
     {
         $jumlahDataPerHalaman = 2;
-        $this->db->query("SELECT * FROM artikel");
+        $this->db->query("SELECT * FROM artikel AS a JOIN kontributor AS ktb ON a.id_artikel = ktb.id_artikel 
+        WHERE ktb.id_penulis = $id_penulis");
         $this->db->execute();
         $jumlahData = $this->db->Rowcount();
         $totalPages = ceil($jumlahData / $jumlahDataPerHalaman);

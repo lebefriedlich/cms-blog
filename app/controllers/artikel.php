@@ -6,13 +6,12 @@ class artikel extends Controller
         if (isset($_SESSION['login'])) {
             $data['judul'] = 'Artikel Saya';
             $data['admin'] = $_SESSION['admin'];
-            $data['artikels'] = $this->model('artikel_model')->loadArtikel($halaman);
-            $data['pagination'] = $this->model('artikel_model')->pagination();
+            $data['artikels'] = $this->model('artikel_model')->loadArtikel($halaman, intval($data['admin']['id_penulis']));
+            $data['pagination'] = $this->model('artikel_model')->pagination(intval($data['admin']['id_penulis']));
             $data['currentPage'] = $halaman;
             $data['prevPage'] = ($halaman > 1) ?  $halaman - 1 : 1;
             $data['nextPage'] = ($halaman > $data['pagination']) ?  $halaman + 1 : $data['pagination'];
             $data['kategoris'] = $this->model('artikel_model')->loadKategori();
-            $data['penuliss'] = $this->model('artikel_model')->loadPenulis();
             $this->view('templates/header', $data);
             $this->view('dashboard/artikel/index', $data);
         } else {

@@ -2,8 +2,7 @@
         <link href="<?= BASEURL; ?>/css/style_dashboard.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
-        <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/super-build/ckeditor.js"></script>
-        <script src="<?= BASEURL; ?>/js/script_ckeditor.js"></script>
+        <!-- <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/super-build/ckeditor.js"></script> -->
         <style>
             #container {
                 width: 1000px;
@@ -57,6 +56,11 @@
                                 <a class="nav-link" href="<?= BASEURL ?>/artikel">
                                     <div class="sb-nav-link-icon"><i class="bi bi-file-earmark"></i></div>
                                     Artikel
+                                </a>
+                                <hr>
+                                <a class="nav-link" href="<?= BASEURL ?>/dashboard/logout">
+                                    <div class="sb-nav-link-icon"><i class="bi bi-box-arrow-left"></i></i></div>
+                                    Keluar
                                 </a>
                             </div>
                         </div>
@@ -129,7 +133,7 @@
                                                                     <input type="text" name="id_artikel" class="visually-hidden" value="<?= $artikel['id_artikel'] ?>">
                                                                     <input type="text" name="penulis" class="visually-hidden" value="<?= $artikel['id_penulis'] ?>">
                                                                     <div class="mb-3">
-                                                                        <label for="judul" class="form-label">Judul</label>
+                                                                        <label for="judul-edit" class="form-label">Judul</label>
                                                                         <input type="text" name="judul" id="judul-edit" class="form-control" value="<?= $artikel['judul'] ?>" required />
                                                                     </div>
                                                                     <input type="text" name="slug" id="slug-edit" class="visually-hidden" value="<?= $artikel['slug'] ?>" required />
@@ -145,14 +149,7 @@
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="penulis" class="form-label">Penulis</label>
-                                                                        <input type="text" class="form-control" value="<?= $artikel['nama_penulis'] ?>" disabled>
-                                                                        <!-- <select id="penulis" class="form-select" name="penulis" required>
-                                                                            <option value="<?= $artikel['id_penulis'] ?>" selected><?= $artikel['nama_penulis'] ?></option>
-                                                                            <?php foreach ($data['penuliss'] as $penulis) : ?>
-                                                                                <?php if ($penulis['id_penulis'] == $artikel['id_penulis']) continue; ?>
-                                                                                <option value="<?= $penulis['id_penulis'] ?>"><?= $penulis['nama'] ?></option>
-                                                                            <?php endforeach; ?>
-                                                                        </select> -->
+                                                                        <input type="text" class="form-control" id="penulis" value="<?= $artikel['nama_penulis'] ?>" disabled>
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="editor<?= $i ?>" class="form-label">Isi</label>
@@ -160,7 +157,7 @@
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="image" class="form-label">Gambar :</label>
-                                                                        <input type="file" name="image" class="form-control" />
+                                                                        <input type="file" name="image" id="image" class="form-control" />
                                                                         <input type="text" name="image-lawas" class="visually-hidden" value="<?= $artikel['gambar'] ?>">
                                                                     </div>
                                                                     <div class="modal-footer">
@@ -235,7 +232,7 @@
                         <div class="modal-body">
                             <form action="<?= BASEURL; ?>/artikel/add" method="post" enctype="multipart/form-data">
                                 <div class="mb-3">
-                                    <label for="judul" class="form-label">Judul:</label>
+                                    <label for="judul-add" class="form-label">Judul:</label>
                                     <input type="text" name="judul" id="judul-add" class="form-control" required />
                                 </div>
                                 <input type="text" name="slug" id="slug-add" class="visually-hidden" required />
@@ -248,14 +245,6 @@
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <!-- <div class="mb-3">
-                                    <label for="penulis" class="form-label">Penulis</label>
-                                    <select id="penulis" class="form-select" name="penulis" required>
-                                        <?php foreach ($data['penuliss'] as $penulis) : ?>
-                                            <option value="<?= $penulis['id_penulis'] ?>"><?= $penulis['nama'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div> -->
                                 <div class="mb-3">
                                     <label for="editor" class="form-label">Isi</label>
                                     <textarea name="isi" id="editor"></textarea>
@@ -309,13 +298,18 @@
                 const countEditorElement = document.getElementById('countEditor');
 
                 const countEditorData = countEditorElement.textContent;
+
                 for (let i = countEditorData; i <= countEditorData + 1; i++) {
-                    ClassicEditor
-                        .create(document.querySelector(`#editor${i}`))
-                        .catch(error => {
-                            console.error(error);
-                        });
+                    const editorElement = document.querySelector(`#editor${i}`);
+                    if (editorElement) { 
+                        ClassicEditor
+                            .create(editorElement)
+                            .catch(error => {
+                                console.error(error);
+                            });
+                    }
                 }
+                
             </script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
             <script src="<?= BASEURL; ?>/js/script_dashboard.js"></script>

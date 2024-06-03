@@ -40,6 +40,11 @@
                                     <div class="sb-nav-link-icon"><i class="bi bi-file-earmark"></i></div>
                                     Artikel
                                 </a>
+                                <hr>
+                                <a class="nav-link" href="<?= BASEURL ?>/dashboard/logout">
+                                    <div class="sb-nav-link-icon"><i class="bi bi-box-arrow-left"></i></i></div>
+                                    Keluar
+                                </a>
                             </div>
                         </div>
                         <div class="sb-sidenav-footer">
@@ -74,7 +79,6 @@
                                                 <th scope="col">No</th>
                                                 <th scope="col">Nama</th>
                                                 <th scope="col">Email</th>
-                                                <th scope="col">Password</th>
                                                 <th scope="col">Aksi</th>
                                             </tr>
                                         </thead>
@@ -86,7 +90,6 @@
                                                     <td><?= $i++ ?></td>
                                                     <td><?= $penulis['nama'] ?></td>
                                                     <td><?= $penulis['email'] ?></td>
-                                                    <td><?= $penulis['password'] ?></td>
                                                     <td>
                                                         <a href="" class="text-decoration-none btn btn-primary btn-sm m-1" data-bs-toggle="modal" data-bs-target="#EditModal<?= $penulis['id_penulis']; ?>">
                                                             <i class="bi bi-pencil-square"></i>
@@ -97,28 +100,27 @@
                                                     </td>
                                                 </tr>
 
-                                                <div class="modal fade" id="EditModal<?= $penulis['id_penulis']; ?>" tabindex="-1" aria-labelledby="EditModalLabel" aria-hidden="true">
+                                                <div class="modal fade" id="EditModal<?= $penulis['id_penulis']; ?>" tabindex="-1" aria-labelledby="EditModalLabel<?= $penulis['id_penulis']; ?>" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="EditModalLabel">Edit Penulis</h1>
+                                                                <h1 class="modal-title fs-5" id="EditModalLabel<?= $penulis['id_penulis']; ?>">Edit Penulis</h1>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <form action="<?= BASEURL; ?>/penulis/edit/<?= $penulis['id_penulis']; ?>" method="post">
                                                                     <div class="mb-3">
-                                                                        <label for="nama" class="form-label fs-5 d-block">Nama :</label>
-                                                                        <input type="text" name="nama" class="form-control" value="<?= $penulis['nama']; ?>" required />
+                                                                        <label for="nama<?= $penulis['id_penulis']; ?>" class="form-label fs-5 d-block">Nama :</label>
+                                                                        <input type="text" name="nama" id="nama<?= $penulis['id_penulis']; ?>" class="form-control" value="<?= $penulis['nama']; ?>" required />
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="email" class="form-label fs-5 d-block">Email :</label>
-                                                                        <input type="email" name="email" class="form-control" value="<?= $penulis['email']; ?>" required />
+                                                                        <label for="email<?= $penulis['id_penulis']; ?>" class="form-label fs-5 d-block">Email :</label>
+                                                                        <input type="email" name="email" id="email<?= $penulis['id_penulis']; ?>" class="form-control" value="<?= $penulis['email']; ?>" autocomplete="username" required />
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="password" class="form-label fs-5 d-block">Password :</label>
-                                                                        <input type="text" name="password" class="form-control" value="<?= $penulis['password']; ?>" required />
+                                                                        <label for="password<?= $penulis['id_penulis']; ?>" class="form-label fs-5 d-block">Password :</label>
+                                                                        <input type="password" name="password" id="password<?= $penulis['id_penulis']; ?>" class="form-control" placeholder="Masukkan Password baru (Apabila ingin merubah password)" autocomplete="current-password" required />
                                                                     </div>
-                                                                    <input type="text" name="passwordLama" value="<?= $penulis['password']; ?>" class="visually-hidden">
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                         <button type="submit" class="btn btn-primary" name="edit">Simpan Perubahan</button>
@@ -128,6 +130,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
 
                                                 <div class="modal fade" id="deleteModal<?= $penulis['id_penulis']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
@@ -192,15 +195,15 @@
                             <form action="<?= BASEURL; ?>/penulis/add" method="post">
                                 <div class="mb-3">
                                     <label for="nama" class="form-label fs-5 d-block">Nama :</label>
-                                    <input type="text" name="nama" class="form-control" required />
+                                    <input type="text" name="nama" id="nama" class="form-control" required />
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label fs-5 d-block">Email :</label>
-                                    <input type="email" name="email" class="form-control" required />
+                                    <input type="email" name="email" id="email" class="form-control" autocomplete="username" required />
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label fs-5 d-block">Password :</label>
-                                    <input type="password" name="password" class="form-control" required />
+                                    <input type="password" name="password" id="password" class="form-control" autocomplete="current-password" required />
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

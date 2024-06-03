@@ -44,7 +44,7 @@ class penulis extends Controller
     public function edit($id_penulis)
     {
         if (isset($_POST['edit'])) {
-            if ($_POST['password'] === $_POST['passwordLama']) {
+            if (empty($_POST['password'])) {
                 unset($_POST['password']);
             }
 

@@ -46,11 +46,12 @@ class artikel extends Controller
     public function add()
     {
         if (isset($_POST['add'])) {
-            $allowed_mime_types = array("image/jpeg", "image/png");
+            $allowed_mime_types = array("image/jpeg", "image/png", "image/jpg");
 
             $file_name = $_FILES['image']['name'];
             $file_tmp = $_FILES['image']['tmp_name'];
             $file_type = $_FILES['image']['type'];
+            $file_size = $_FILES['image']['size'];
 
             $nama_file_baru = $_POST['slug'];
             $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
@@ -61,15 +62,17 @@ class artikel extends Controller
             $target_path = $target_directory . basename($file_name_baru);
 
             if (in_array($file_type, $allowed_mime_types)) {
-                $_POST['hari_tanggal'] = $this->tanggal_indonesia();
-                $resultInsertArticle = $this->model('artikel_model')->add($_POST);
-                if (move_uploaded_file($file_tmp, $target_path) && $resultInsertArticle > 0) {
-                    Flasher::setFlash('Kamu berhasil ', 'menambahkan artikel', 'success');
-                } else {
-                    Flasher::setFlash('Kamu gagal ', 'menambahkan artikel', 'danger');
+                if ($file_size > 500000) {
+                    $_POST['hari_tanggal'] = $this->tanggal_indonesia();
+                    $resultInsertArticle = $this->model('artikel_model')->add($_POST);
+                    if (move_uploaded_file($file_tmp, $target_path) && $resultInsertArticle > 0) {
+                        Flasher::setFlash('Kamu berhasil ', 'menambahkan artikel', 'success');
+                    } else {
+                        Flasher::setFlash('Kamu gagal ', 'menambahkan artikel', 'danger');
+                    }
                 }
             } else {
-                Flasher::setFlash('', 'File yang diunggah bukan file gambar. JPEG / PNG', 'danger');
+                Flasher::setFlash('', 'File yang diunggah bukan file gambar. JPEG / PNG / JPG', 'danger');
             }
 
             header('Location: ' . BASEURL . '/artikel');

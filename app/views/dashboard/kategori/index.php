@@ -40,6 +40,11 @@
                                     <div class="sb-nav-link-icon"><i class="bi bi-file-earmark"></i></div>
                                     Artikel
                                 </a>
+                                <hr>
+                                <a class="nav-link" href="<?= BASEURL ?>/dashboard/logout">
+                                    <div class="sb-nav-link-icon"><i class="bi bi-box-arrow-left"></i></i></div>
+                                    Keluar
+                                </a>
                             </div>
                         </div>
                         <div class="sb-sidenav-footer">
@@ -105,13 +110,13 @@
                                                             <div class="modal-body">
                                                                 <form action="<?= BASEURL; ?>/kategori/edit/<?= $kategori['id_kategori']; ?>" method="post">
                                                                     <div class="mb-3">
-                                                                        <label for="nama" class="form-label">Nama Kategori:</label>
+                                                                        <label for="nama-edit" class="form-label">Nama Kategori:</label>
                                                                         <input type="text" name="nama" id="nama-edit" class="form-control" value="<?= $kategori['nama_kategori'] ?>" required />
                                                                         <input type="text" name="slug" id="slug-edit" class="form-control visually-hidden" value="<?= $kategori['slug_kategori'] ?>" required />
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="keterangan" class="form-label">Keterangan :</label>
-                                                                        <textarea name="keterangan" class="form-control" required><?= $kategori['keterangan'] ?></textarea>
+                                                                        <textarea name="keterangan" id="keterangan" class="form-control" required><?= $kategori['keterangan'] ?></textarea>
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -185,7 +190,7 @@
                         <div class="modal-body">
                             <form action="<?= BASEURL; ?>/kategori/add" method="post">
                                 <div class="mb-3">
-                                    <label for="nama" class="form-label">Nama Kategori:</label>
+                                    <label for="nama-add" class="form-label">Nama Kategori:</label>
                                     <input type="text" name="nama" id="nama-add" class="form-control" required />
                                     <input type="text" name="slug" id="slug-add" class="form-control visually-hidden" />
                                 </div>

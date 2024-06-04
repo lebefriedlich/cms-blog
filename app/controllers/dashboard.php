@@ -8,7 +8,7 @@ class dashboard extends Controller
             $data['admin'] = $_SESSION['admin'];
             $data['jumlahPenulis'] = $this->model('dashboard_model')->jumlahPenulis();
             $data['jumlahKategori'] = $this->model('dashboard_model')->jumlahKategori();
-            $data['jumlahArtikel'] = $this->model('dashboard_model')->jumlahArtikel();
+            $data['jumlahArtikel'] = $this->model('dashboard_model')->jumlahArtikel(intval($data['admin']['id_penulis']));
             $this->view('templates/header', $data);
             $this->view('dashboard/index', $data);
         } else {

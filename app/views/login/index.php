@@ -25,11 +25,12 @@
                         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                             <form action="<?= BASEURL; ?>/login/login" method="post">
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <input type="email" name="email" id="form3Example3" class="form-control form-control-lg" placeholder="Masukkan alamat Email" />
+                                <input type="email" name="email" class="form-control form-control-lg" placeholder="Masukkan alamat Email" autocomplete="email">
+
                                 </div>
 
                                 <div data-mdb-input-init class="form-outline mb-3">
-                                    <input type="password" name="password" id="form3Example4" class="form-control form-control-lg" placeholder="Masukkan Password" />
+                                    <input type="password" name="password" class="form-control form-control-lg" placeholder="Masukkan Password" />
                                 </div>
 
                                 <div class="text-center text-lg-start mt-4 pt-2">

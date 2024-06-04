@@ -20,8 +20,9 @@ class dashboard_model
         return $this->db->single();
     }
 
-    public function jumlahArtikel(){
-        $query = "SELECT COUNT(*) AS '0' FROM artikel";
+    public function jumlahArtikel($id_penulis){
+        $query = "SELECT COUNT(*) AS '0' FROM artikel AS a JOIN kontributor AS ktb ON a.id_artikel = ktb.id_artikel 
+        WHERE ktb.id_penulis = $id_penulis";
         $this->db->query($query);
         return $this->db->single();
     }

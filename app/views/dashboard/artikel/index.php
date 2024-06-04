@@ -148,10 +148,6 @@
                                                                         </select>
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="penulis" class="form-label">Penulis</label>
-                                                                        <input type="text" class="form-control" id="penulis" value="<?= $artikel['nama_penulis'] ?>" disabled>
-                                                                    </div>
-                                                                    <div class="mb-3">
                                                                         <label for="editor<?= $i ?>" class="form-label">Isi</label>
                                                                         <textarea name="isi" id="editor<?= $i ?>"><?= $artikel['isi'] ?>"</textarea>
                                                                     </div>

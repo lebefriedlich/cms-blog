@@ -30,7 +30,6 @@ class post_model
         $this->db->query($query);
         $this->db->bind("id_artikel", $id_artikel);
 
-        $this->db->execute();
         return $this->db->rowCount();
     }
 }

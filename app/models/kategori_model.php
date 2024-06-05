@@ -61,38 +61,41 @@ class kategori_model
         $query = "SELECT id_artikel FROM kontributor WHERE id_kategori = :id_kategori";
         $this->db->query($query);
         $this->db->bind("id_kategori", $id_kategori);
-        $this->db->execute();
         $data['id_artikel'] = $this->db->resultSet();
 
-        // Delete related articles
         if (!empty($data['id_artikel'])) {
             $query = "DELETE FROM kontributor WHERE id_kategori = :id_kategori";
             $this->db->query($query);
             $this->db->bind("id_kategori", $id_kategori);
-            $this->db->execute();
 
             if ($this->db->rowCount() > 0) {
                 $query = "DELETE FROM kategori WHERE id_kategori = :id_kategori";
                 $this->db->query($query);
                 $this->db->bind("id_kategori", $id_kategori);
-                $this->db->execute();
                 if ($this->db->rowCount() > 0) {
                     foreach ($data['id_artikel'] as $row) {
                         $query = "DELETE FROM artikel WHERE id_artikel = :id_artikel";
                         $this->db->query($query);
                         $this->db->bind("id_artikel", $row['id_artikel']);
-                        $this->db->execute();
                         if ($this->db->rowCount() > 0) {
                             $deletionsOccurred = true;
                         }
                     }
-                    if ($deletionsOccurred){
+                    if ($deletionsOccurred) {
                         return 1;
                     }
                 }
-            } else {
-                return -1;
             }
+        }
+
+        $query = "DELETE FROM kategori WHERE id_kategori = :id_kategori";
+        $this->db->query($query);
+        $this->db->bind("id_kategori", $id_kategori);
+
+        if ($this->db->rowCount() > 0) {
+            return 1;
+        } else {
+            return 0;
         }
     }
 }

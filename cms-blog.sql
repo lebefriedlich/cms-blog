@@ -50,6 +50,21 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `slug_kategori`, `ketera
 	(1, 'Wisata Alam', 'wisata-alam', 'Artikel ini menyajikan informasi mendalam tentang Wisata Alam, mengulas dengan detail dan menyeluruh berbagai aspek yang terkait dengan topik tersebut, termasuk sejarahnya, perkembangan terbaru, implikasi praktisnya, serta pandangan dari berbagai ahli dan praktisi di bidangnya.'),
 	(2, 'Wisata Sejarah', 'wisata-sejarah', 'Artikel ini menyajikan informasi mendalam tentang Wisata Sejarah, mengulas dengan detail dan menyeluruh berbagai aspek yang terkait dengan topik tersebut, termasuk sejarahnya, perkembangan terbaru, implikasi praktisnya, serta pandangan dari berbagai ahli dan praktisi di bidangnya.');
 
+-- Dumping structure for table cms-blog.penulis
+CREATE TABLE IF NOT EXISTS `penulis` (
+  `id_penulis` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(50) NOT NULL DEFAULT '0',
+  `email` varchar(50) NOT NULL DEFAULT '0',
+  `password` varchar(255) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_penulis`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table cms-blog.penulis: ~2 rows (approximately)
+INSERT INTO `penulis` (`id_penulis`, `nama`, `email`, `password`) VALUES
+	(1, 'Noval Akbar', 'noval.akbar.906@gmail.com', '$2y$10$CtWF1rMDZGoEd8YHOt/gF.12UPUf3911aIh79gSxN8uJgX9aujPNi'),
+	(2, 'Maulana Haekal', 'maulanahaekal@gmail.com', '$2y$10$GlcqHNEGdLHCOrL8y3uj0uxWP04sx5GT2tzO9FBVNSgNRxXW4meKa');
+
 -- Dumping structure for table cms-blog.kontributor
 CREATE TABLE IF NOT EXISTS `kontributor` (
   `id_kontributor` int(11) NOT NULL AUTO_INCREMENT,
@@ -74,21 +89,6 @@ INSERT INTO `kontributor` (`id_kontributor`, `id_penulis`, `id_kategori`, `id_ar
 	(5, 1, 1, 5),
 	(6, 1, 1, 6),
 	(7, 1, 1, 7);
-
--- Dumping structure for table cms-blog.penulis
-CREATE TABLE IF NOT EXISTS `penulis` (
-  `id_penulis` int(11) NOT NULL AUTO_INCREMENT,
-  `nama` varchar(50) NOT NULL DEFAULT '0',
-  `email` varchar(50) NOT NULL DEFAULT '0',
-  `password` varchar(255) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id_penulis`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
-
--- Dumping data for table cms-blog.penulis: ~2 rows (approximately)
-INSERT INTO `penulis` (`id_penulis`, `nama`, `email`, `password`) VALUES
-	(1, 'Noval Akbar', 'noval.akbar.906@gmail.com', '$2y$10$CtWF1rMDZGoEd8YHOt/gF.12UPUf3911aIh79gSxN8uJgX9aujPNi'),
-	(2, 'Maulana Haekal', 'maulanahaekal@gmail.com', '$2y$10$GlcqHNEGdLHCOrL8y3uj0uxWP04sx5GT2tzO9FBVNSgNRxXW4meKa');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

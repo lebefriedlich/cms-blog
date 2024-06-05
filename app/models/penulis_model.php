@@ -43,7 +43,6 @@ class penulis_model
         $password = password_hash($data['password'], PASSWORD_DEFAULT);
         $this->db->bind("password", $password);
 
-        $this->db->execute();
         return $this->db->rowCount();
     }
 
@@ -68,18 +67,50 @@ class penulis_model
         }
 
         $this->db->bind('id_penulis', $id_penulis);
-        $this->db->execute();
 
         return $this->db->rowCount();
     }
 
     public function delete($id_penulis)
     {
-        $query = "DELETE FROM penulis WHERE id_penulis = :id_penulis";
+        $query = "SELECT id_artikel FROM kontributor WHERE id_penulis = :id_penulis";
         $this->db->query($query);
         $this->db->bind("id_penulis", $id_penulis);
-        $this->db->execute();
+        $data['id_artikel'] = $this->db->resultSet();
 
-        return $this->db->rowCount();
+        if (!empty($data['id_artikel'])) {
+            $query = "DELETE FROM kontributor WHERE id_penulis = :id_penulis";
+            $this->db->query($query);
+            $this->db->bind("id_penulis", $id_penulis);
+
+            if ($this->db->rowCount() > 0) {
+                $query = "DELETE FROM penulis WHERE id_penulis = :id_penulis";
+                $this->db->query($query);
+                $this->db->bind("id_penulis", $id_penulis);
+                if ($this->db->rowCount() > 0) {
+                    foreach ($data['id_artikel'] as $row) {
+                        $query = "DELETE FROM artikel WHERE id_artikel = :id_artikel";
+                        $this->db->query($query);
+                        $this->db->bind("id_artikel", $row['id_artikel']);
+                        if ($this->db->rowCount() > 0) {
+                            $deletionsOccurred = true;
+                        }
+                    }
+                    if ($deletionsOccurred) {
+                        return 1;
+                    }
+                }
+            }
+        }
+
+        $query = "DELETE FROM kategori WHERE id_penulis = :id_penulis";
+        $this->db->query($query);
+        $this->db->bind("id_penulis", $id_penulis);
+
+        if ($this->db->rowCount() > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }

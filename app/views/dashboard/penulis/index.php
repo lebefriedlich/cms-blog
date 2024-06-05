@@ -119,7 +119,7 @@
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="password<?= $penulis['id_penulis']; ?>" class="form-label fs-5 d-block">Password :</label>
-                                                                        <input type="password" name="password" id="password<?= $penulis['id_penulis']; ?>" class="form-control" placeholder="Masukkan Password baru (Apabila ingin merubah password)" autocomplete="current-password" required />
+                                                                        <input type="password" name="password" id="password<?= $penulis['id_penulis']; ?>" class="form-control" placeholder="Masukkan Password baru (Apabila ingin merubah password)" autocomplete="current-password"/>
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

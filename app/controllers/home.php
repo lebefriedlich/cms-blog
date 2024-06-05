@@ -6,7 +6,7 @@ class home extends Controller
         $data['judul'] = 'Wonderful Pasuruan';
         if ($halaman == 1) {
             $data['artikelUtama'] = $this->model('home_model')->artikelUtama();
-        }
+        } 
         $data['article'] = $this->model('home_model')->artikel($halaman);
         $data['pagination'] = $this->model('home_model')->pagination();
         $data['currentPage'] = $halaman;

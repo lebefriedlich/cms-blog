@@ -70,7 +70,6 @@ class home_model
         JOIN kategori ON kontributor.id_kategori = kategori.id_kategori
         WHERE kategori.slug_kategori = :slug");
         $this->db->bind("slug", $slug);
-        $this->db->execute();
         $jumlahData = $this->db->Rowcount();
         $totalPages = ceil($jumlahData / $jumlahDataPerHalaman);
         return $totalPages;

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
     <link rel="stylesheet" href="<?= BASEURL; ?>/css/style_post.css">
     </head>
 
@@ -34,6 +35,8 @@
             </div>
         </div>
 =======
+=======
+>>>>>>> parent of b2b1a56 (update all)
     <link rel="stylesheet" href="<?= BASEURL; ?>/css/style_post.css">
     </head>
 
@@ -41,7 +44,11 @@
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
             <div class="container">
+<<<<<<< HEAD
                 <a class="navbar-brand" href="<?= BASEURL; ?>/home"><img src="<?= BASEURL; ?>/images/pasuruan Wonderful.png" style="width: 200px; height: 50px;"></a>
+=======
+                <a class="navbar-brand" href="<?= BASEURL; ?>/home"><img src="<?= BASEURL; ?>/images/wonderful-pasuruan.png" style="width: 200px; height: 50px;"></a>
+>>>>>>> parent of b2b1a56 (update all)
             </div>
         </nav>
 
@@ -67,9 +74,13 @@
                     </article>
                 </div>
             </div>
+<<<<<<< HEAD
         </div>
 
         <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html> -->
 >>>>>>> parent of 87c2a58 (revisi lagi)
+=======
+        </div>
+>>>>>>> parent of b2b1a56 (update all)

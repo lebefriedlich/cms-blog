@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?php
 
 class kategori_model
@@ -99,6 +100,8 @@ class kategori_model
     }
 }
 =======
+=======
+>>>>>>> parent of b2b1a56 (update all)
 <?php
 
 class kategori_model
@@ -162,31 +165,46 @@ class kategori_model
         $query = "SELECT id_artikel FROM kontributor WHERE id_kategori = :id_kategori";
         $this->db->query($query);
         $this->db->bind("id_kategori", $id_kategori);
+<<<<<<< HEAD
         $this->db->execute();
         $data['id_artikel'] = $this->db->resultSet();
 
         // Delete related articles
+=======
+        $data['id_artikel'] = $this->db->resultSet();
+
+>>>>>>> parent of b2b1a56 (update all)
         if (!empty($data['id_artikel'])) {
             $query = "DELETE FROM kontributor WHERE id_kategori = :id_kategori";
             $this->db->query($query);
             $this->db->bind("id_kategori", $id_kategori);
+<<<<<<< HEAD
             $this->db->execute();
+=======
+>>>>>>> parent of b2b1a56 (update all)
 
             if ($this->db->rowCount() > 0) {
                 $query = "DELETE FROM kategori WHERE id_kategori = :id_kategori";
                 $this->db->query($query);
                 $this->db->bind("id_kategori", $id_kategori);
+<<<<<<< HEAD
                 $this->db->execute();
+=======
+>>>>>>> parent of b2b1a56 (update all)
                 if ($this->db->rowCount() > 0) {
                     foreach ($data['id_artikel'] as $row) {
                         $query = "DELETE FROM artikel WHERE id_artikel = :id_artikel";
                         $this->db->query($query);
                         $this->db->bind("id_artikel", $row['id_artikel']);
+<<<<<<< HEAD
                         $this->db->execute();
+=======
+>>>>>>> parent of b2b1a56 (update all)
                         if ($this->db->rowCount() > 0) {
                             $deletionsOccurred = true;
                         }
                     }
+<<<<<<< HEAD
                     if ($deletionsOccurred){
                         return 1;
                     }
@@ -198,3 +216,23 @@ class kategori_model
     }
 }
 >>>>>>> parent of 87c2a58 (revisi lagi)
+=======
+                    if ($deletionsOccurred) {
+                        return 1;
+                    }
+                }
+            }
+        }
+
+        $query = "DELETE FROM kategori WHERE id_kategori = :id_kategori";
+        $this->db->query($query);
+        $this->db->bind("id_kategori", $id_kategori);
+
+        if ($this->db->rowCount() > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+}
+>>>>>>> parent of b2b1a56 (update all)

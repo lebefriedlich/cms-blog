@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?php
 
 class home_model
@@ -92,6 +93,8 @@ class home_model
     }
 }
 =======
+=======
+>>>>>>> parent of b2b1a56 (update all)
 <?php
 
 class home_model
@@ -164,7 +167,10 @@ class home_model
         JOIN kategori ON kontributor.id_kategori = kategori.id_kategori
         WHERE kategori.slug_kategori = :slug");
         $this->db->bind("slug", $slug);
+<<<<<<< HEAD
         $this->db->execute();
+=======
+>>>>>>> parent of b2b1a56 (update all)
         $jumlahData = $this->db->Rowcount();
         $totalPages = ceil($jumlahData / $jumlahDataPerHalaman);
         return $totalPages;
@@ -184,4 +190,7 @@ class home_model
         return $this->db->resultSet();
     }
 }
+<<<<<<< HEAD
 >>>>>>> parent of 87c2a58 (revisi lagi)
+=======
+>>>>>>> parent of b2b1a56 (update all)

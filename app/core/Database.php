@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?php
 class Database
 {
@@ -85,6 +86,8 @@ class Database
     }
 }
 =======
+=======
+>>>>>>> parent of b2b1a56 (update all)
 <?php
 class Database
 {
@@ -161,6 +164,10 @@ class Database
 
     public function rowCount()
     {
+<<<<<<< HEAD
+=======
+        $this->execute();
+>>>>>>> parent of b2b1a56 (update all)
         return $this->stmt->rowCount();
     }
 
@@ -170,4 +177,7 @@ class Database
         return $this->dbh->lastInsertId();
     }
 }
+<<<<<<< HEAD
 >>>>>>> parent of 87c2a58 (revisi lagi)
+=======
+>>>>>>> parent of b2b1a56 (update all)

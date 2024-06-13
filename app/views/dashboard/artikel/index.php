@@ -2,6 +2,7 @@
         <link href="<?= BASEURL; ?>/css/style_dashboard.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+        <!-- <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/super-build/ckeditor.js"></script> -->
         <style>
             #container {
                 width: 1000px;
@@ -18,19 +19,11 @@
             }
         </style>
         </head>
-        <?php 
-        if (preg_match('/\/public\/artikel\/index\/(\d+)/', $_SERVER['REQUEST_URI']) > 0) {
-            $url = './../../';
-            $url1 = '../../../';
-        } else {
-            $url = './';
-            $url1 = '../';
-        }
-        ?>
+
         <body class="sb-nav-fixed">
             <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
                 <!-- Navbar Brand-->
-                <a class="navbar-brand" href="<?= BASEURL; ?>/dashboard"><img src="<?= $url; ?>images/wonderful-pasuruan.png" class="mt-2 ms-2" style="width: 200px; height: 50px;"></a>
+                <a class="navbar-brand" href="<?= BASEURL; ?>/dashboard"><img src="<?= BASEURL; ?>/images/pasuruan Wonderful.png" class="mt-2 ms-2" style="width: 200px; height: 50px;"></a>
                 <!-- Sidebar Toggle-->
                 <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
                 <!-- Navbar-->
@@ -117,7 +110,7 @@
                                                     <td><?= $artikel['hari_tanggal'] ?></td>
                                                     <td><?= $artikel['judul'] ?></td>
                                                     <td><?= $artikel['isi'] ?></td>
-                                                    <td><img src="<?= $url1; ?>app/assets/artikel/<?= $artikel['gambar'] ?>" class="rounded mx-auto d-block w-100" alt="..."></td>
+                                                    <td><img src="/cms-blog/app/assets/artikel/<?= $artikel['gambar'] ?>" class="rounded mx-auto d-block w-100" alt="..."></td>
                                                     <td>
                                                         <a href="" class="text-decoration-none btn btn-primary btn-sm m-1" data-bs-toggle="modal" data-bs-target="#EditModal<?= $artikel['id_artikel']; ?>">
                                                             <i class="bi bi-pencil-square"></i>
@@ -137,13 +130,13 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <form action="<?= BASEURL; ?>/artikel/edit/<?= $artikel['id_artikel'] . '/' . $artikel['id_kontributor'] ?>" method="post" enctype="multipart/form-data">
-                                                                    <input type="hidden" name="id_artikel" value="<?= $artikel['id_artikel'] ?>">
-                                                                    <input type="hidden" name="penulis" value="<?= $artikel['id_penulis'] ?>">
+                                                                    <input type="text" name="id_artikel" class="visually-hidden" value="<?= $artikel['id_artikel'] ?>">
+                                                                    <input type="text" name="penulis" class="visually-hidden" value="<?= $artikel['id_penulis'] ?>">
                                                                     <div class="mb-3">
                                                                         <label for="judul-edit" class="form-label">Judul</label>
                                                                         <input type="text" name="judul" id="judul-edit" class="form-control" value="<?= $artikel['judul'] ?>" required />
                                                                     </div>
-                                                                    <input type="hidden" name="slug" id="slug-edit" value="<?= $artikel['slug'] ?>" required />
+                                                                    <input type="text" name="slug" id="slug-edit" class="visually-hidden" value="<?= $artikel['slug'] ?>" required />
                                                                     <div class="mb-3">
                                                                         <label for="kategori" class="form-label">Kategori</label>
                                                                         <select id="kategori" class="form-select" name="kategori" required>
@@ -161,7 +154,7 @@
                                                                     <div class="mb-3">
                                                                         <label for="image" class="form-label">Gambar :</label>
                                                                         <input type="file" name="image" id="image" class="form-control" />
-                                                                        <input type="hidden" name="image-lawas" value="<?= $artikel['gambar'] ?>">
+                                                                        <input type="text" name="image-lawas" class="visually-hidden" value="<?= $artikel['gambar'] ?>">
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -238,8 +231,8 @@
                                     <label for="judul-add" class="form-label">Judul:</label>
                                     <input type="text" name="judul" id="judul-add" class="form-control" required />
                                 </div>
-                                <input type="hidden" name="slug" id="slug-add" required />
-                                <input type="hidden" name="penulis" value="<?= $data['admin']['id_penulis'] ?>" required />
+                                <input type="text" name="slug" id="slug-add" class="visually-hidden" required />
+                                <input type="text" name="penulis" class="visually-hidden" value="<?= $data['admin']['id_penulis'] ?>" required />
                                 <div class="mb-3">
                                     <label for="kategori" class="form-label">Kategori</label>
                                     <select id="kategori" class="form-select" name="kategori" required>
@@ -270,36 +263,38 @@
                     string = string.toLowerCase();
                     string = string.replace(/[^a-z0-9]+/g, '-');
                     string = string.replace(/^-+|-+$/g, '');
-            
+
                     return string;
                 }
-            
+
                 const judulAdd = document.getElementById('judul-add');
                 const slugAdd = document.getElementById('slug-add');
+
                 judulAdd.addEventListener('blur', function() {
                     const judulValue = judulAdd.value;
                     const slugValue = slugify(judulValue);
                     slugAdd.value = slugValue;
                 });
-            
-                const judulEdit = document.querySelectorAll('[id^=judul-edit]');
-                judulEdit.forEach(function(el) {
-                    el.addEventListener('blur', function() {
-                        const judulValue = el.value;
-                        const slugValue = slugify(judulValue);
-                        document.getElementById('slug-edit').value = slugValue;
-                    });
+
+                const judulEdit = document.getElementById('judul-edit');
+                const slugEdit = document.getElementById('slug-edit');
+
+                judulEdit.addEventListener('blur', function() {
+                    const judulValue = judulEdit.value;
+                    const slugValue = slugify(judulValue);
+                    slugEdit.value = slugValue;
                 });
-            
-                ClassicEditor.create(document.querySelector('#editor'))
+
+                ClassicEditor
+                    .create(document.querySelector('#editor'))
                     .catch(error => {
                         console.error(error);
                     });
-            
+
                 const countEditorElement = document.getElementById('countEditor');
 
                 const countEditorData = countEditorElement.textContent;
-                
+
                 for (let i = countEditorData; i <= countEditorData + 1; i++) {
                     const editorElement = document.querySelector(`#editor${i}`);
                     if (editorElement) { 
@@ -310,6 +305,7 @@
                             });
                     }
                 }
+                
             </script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
             <script src="<?= BASEURL; ?>/js/script_dashboard.js"></script>

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?php
 
 class post_model
@@ -36,6 +37,8 @@ class post_model
     }
 }
 =======
+=======
+>>>>>>> parent of b2b1a56 (update all)
 <?php
 
 class post_model
@@ -68,8 +71,14 @@ class post_model
         $this->db->query($query);
         $this->db->bind("id_artikel", $id_artikel);
 
+<<<<<<< HEAD
         $this->db->execute();
         return $this->db->rowCount();
     }
 }
 >>>>>>> parent of 87c2a58 (revisi lagi)
+=======
+        return $this->db->rowCount();
+    }
+}
+>>>>>>> parent of b2b1a56 (update all)

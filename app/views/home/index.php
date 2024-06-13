@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <link rel="stylesheet" href="<?= BASEURL; ?>/css/style_home.css">
 <style>
     ul {
@@ -195,6 +196,47 @@ if (preg_match('/\/public\/home\/index\/(\d+)/', $_SERVER['REQUEST_URI']) > 0) {
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="<?= BASEURL; ?>/home"><img src="<?= BASEURL; ?>/images/pasuruan Wonderful.png" style="width: 200px; height: 50px;"></a>
+=======
+<link rel="stylesheet" href="<?= BASEURL; ?>/css/style_home.css">
+<style>
+    ul {
+        list-style: none;
+    }
+
+    ul#myList li::before {
+        content: "\2022";
+        color: blue;
+        display: inline-block;
+        width: 1em;
+        margin-left: -0.9em;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    ul#myList1 li::before {
+        content: "\2022";
+        color: blue;
+        display: inline-block;
+        width: 1em;
+        margin-left: -0.9em;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    @media (max-width: 992px) {
+        .h-img-400 {
+            height: 400px;
+        }
+    }
+</style>
+</head>
+
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="<?= BASEURL; ?>/home"><img src="./images/wonderful-pasuruan.png" style="width: 200px; height: 50px;"></a>
+>>>>>>> parent of b2b1a56 (update all)
         </div>
     </nav>
 
@@ -209,18 +251,28 @@ if (preg_match('/\/public\/home\/index\/(\d+)/', $_SERVER['REQUEST_URI']) > 0) {
     </header>
     <!-- Page content-->
     <div class="container">
+<<<<<<< HEAD
         <!-- <?php var_dump($data) ?> -->
+=======
+>>>>>>> parent of b2b1a56 (update all)
         <div class="row">
             <!-- Blog entries-->
             <div class="col-lg-8">
                 <!-- Featured blog post-->
                 <div class="card mb-4">
                     <?php if (isset($data['artikelUtama'])) : ?>
+<<<<<<< HEAD
                         <a href="#!"><img class="card-img-top" src="/cms-blog/app/assets/artikel/<?= $data['artikelUtama']['gambar']; ?>" alt="..." /></a>
                         <div class="card-body">
                             <div class="small text-muted"><?= $data['artikelUtama']['hari_tanggal'] ?></div>
                             <h2 class="card-title"><?= $data['artikelUtama']['judul'] ?></h2>
                             <!-- <p class="card-text"><?= $data['artikelUtama']['summary'] ?></p> -->
+=======
+                        <a href="<?= BASEURL; ?>/post/index/<?= $data['artikelUtama']['slug'] ?>"><img class="card-img-top" src="./../app/assets/artikel/<?= $data['artikelUtama']['gambar']; ?>" style="height: 500px;" alt="..." /></a>
+                        <div class="card-body">
+                            <div class="small text-muted"><?= $data['artikelUtama']['hari_tanggal'] ?></div>
+                            <h2 class="card-title"><?= $data['artikelUtama']['judul'] ?></h2>
+>>>>>>> parent of b2b1a56 (update all)
                             <a class="btn btn-primary" href="<?= BASEURL; ?>/post/index/<?= $data['artikelUtama']['slug'] ?>">Baca lebih lanjut →</a>
                         </div>
                     <?php endif; ?>
@@ -230,11 +282,18 @@ if (preg_match('/\/public\/home\/index\/(\d+)/', $_SERVER['REQUEST_URI']) > 0) {
                     <?php foreach ($data['article'] as $article) : ?>
                         <div class="col-lg-6">
                             <div class="card mb-4">
+<<<<<<< HEAD
                                 <a href="#!"><img class="card-img-top" src="/cms-blog/app/assets/artikel/<?= $article['gambar']; ?>" alt="..." style="width: 100%; height: 250px;" /></a>
                                 <div class="card-body">
                                     <div class="small text-muted"><?= $article['hari_tanggal'] ?></div>
                                     <h2 class="card-title h4"><?= $article['judul'] ?></h2>
                                     <!-- <p class="card-text"><?= $article['summary'] ?></p> -->
+=======
+                                <a href="<?= BASEURL; ?>/post/index/<?= $article['slug'] ?>"><img class="card-img-top" src="./../app/assets/artikel/<?= $article['gambar']; ?>" alt="..." style="width: 100%; height: 250px; @media (max-width: 992px) {height: 400px;}" /></a>
+                                <div class="card-body">
+                                    <div class="small text-muted"><?= $article['hari_tanggal'] ?></div>
+                                    <h2 class="card-title h4"><?= $article['judul'] ?></h2>
+>>>>>>> parent of b2b1a56 (update all)
                                     <a class="btn btn-primary" href="<?= BASEURL; ?>/post/index/<?= $article['slug'] ?>">Baca lebih lanjut →</a>
                                 </div>
                             </div>
@@ -277,8 +336,13 @@ if (preg_match('/\/public\/home\/index\/(\d+)/', $_SERVER['REQUEST_URI']) > 0) {
                         <div class="row">
                             <?php foreach ($data['kategoris'] as $kategori) : ?>
                                 <div class="col-sm-6">
+<<<<<<< HEAD
                                     <ul class="list-group mb-0 ms-4">
                                         <li><a href="<?= BASEURL ?>/home/kategori/<?= $kategori['slug_kategori'] ?>" class="text-decoration-none text-black"><?= $kategori['nama_kategori'] ?></a></li>
+=======
+                                    <ul class="list-group mb-0 ms-4 custom-list-group" id="myList">
+                                        <li><a href="<?= BASEURL ?>/home/kategori/<?= $kategori['slug_kategori'] ?>" class="text-decoration-none"><?= $kategori['nama_kategori'] ?></a></li>
+>>>>>>> parent of b2b1a56 (update all)
                                     </ul>
                                 </div>
                             <?php endforeach; ?>
@@ -289,8 +353,13 @@ if (preg_match('/\/public\/home\/index\/(\d+)/', $_SERVER['REQUEST_URI']) > 0) {
                     <div class="card-header">Artikel Populer</div>
                     <div class="card-body">
                         <?php foreach ($data['artikelPopuler'] as $data) : ?>
+<<<<<<< HEAD
                             <ul class="list-group mb-0 ms-4">
                                 <li><a href="<?= BASEURL; ?>/post/index/<?= $data['slug'] ?>" class="text-decoration-none text-black"><?= $data['judul'] ?></a></li>
+=======
+                            <ul class="list-group mb-0 ms-4" id="myList1">
+                                <li><a href="<?= BASEURL; ?>/post/index/<?= $data['slug'] ?>" class="text-decoration-none"><?= $data['judul'] ?></a></li>
+>>>>>>> parent of b2b1a56 (update all)
                             </ul>
                         <?php endforeach; ?>
                     </div>
@@ -315,5 +384,9 @@ if (preg_match('/\/public\/home\/index\/(\d+)/', $_SERVER['REQUEST_URI']) > 0) {
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
+<<<<<<< HEAD
 </html> -->
 >>>>>>> parent of 87c2a58 (revisi lagi)
+=======
+</html> -->
+>>>>>>> parent of b2b1a56 (update all)

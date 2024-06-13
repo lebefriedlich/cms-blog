@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?php
 
 class artikel_model
@@ -137,6 +138,8 @@ class artikel_model
     }
 }
 =======
+=======
+>>>>>>> parent of b2b1a56 (update all)
 <?php
 
 class artikel_model
@@ -206,7 +209,10 @@ class artikel_model
         $this->db->bind("id_kategori", $data['kategori']);
         $this->db->bind("id_artikel", $lastInsertId);
 
+<<<<<<< HEAD
         $this->db->execute();
+=======
+>>>>>>> parent of b2b1a56 (update all)
         return $this->db->rowCount();
     }
 
@@ -238,7 +244,10 @@ class artikel_model
             $this->db->bind("gambar", $data['image']);
         }
         $this->db->bind("id_artikel", $data['id_artikel']);
+<<<<<<< HEAD
         $this->db->execute();
+=======
+>>>>>>> parent of b2b1a56 (update all)
         $jumlah_artikel_diubah = $this->db->rowCount();
 
         $query = "UPDATE kontributor
@@ -248,7 +257,10 @@ class artikel_model
         $this->db->bind("id_kategori", $data['kategori']);
         $this->db->bind("id_artikel", $data['id_artikel']);
         $this->db->bind("id_kontributor", $data['id_kontributor']);
+<<<<<<< HEAD
         $this->db->execute();
+=======
+>>>>>>> parent of b2b1a56 (update all)
         $jumlah_kontributor_diubah = $this->db->rowCount();
 
         if ($jumlah_artikel_diubah > 0) {
@@ -263,6 +275,7 @@ class artikel_model
         $query = "DELETE FROM kontributor WHERE id_kontributor = :id_kontributor";
         $this->db->query($query);
         $this->db->bind("id_kontributor", $id_kontributor);
+<<<<<<< HEAD
         $this->db->execute();
         $this->db->rowCount();
 
@@ -275,3 +288,15 @@ class artikel_model
     }
 }
 >>>>>>> parent of 87c2a58 (revisi lagi)
+=======
+
+        if ($this->db->rowCount() > 0) {
+            $query = "DELETE FROM artikel WHERE id_artikel = :id_artikel";
+            $this->db->query($query);
+            $this->db->bind("id_artikel", $id_artikel);
+
+            return $this->db->rowCount();
+        }
+    }
+}
+>>>>>>> parent of b2b1a56 (update all)

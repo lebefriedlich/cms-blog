@@ -6,11 +6,8 @@ class home extends Controller
         $data['judul'] = 'Wonderful Pasuruan';
         if ($halaman == 1) {
             $data['artikelUtama'] = $this->model('home_model')->artikelUtama();
-<<<<<<< HEAD
+            $data['potongArtikel'] = $this->potongArtikel($data['artikelUtama']['isi'], 300);
         }
-=======
-        } 
->>>>>>> parent of b2b1a56 (update all)
         $data['article'] = $this->model('home_model')->artikel($halaman);
         $data['pagination'] = $this->model('home_model')->pagination();
         $data['currentPage'] = $halaman;
@@ -36,5 +33,24 @@ class home extends Controller
         $this->view('templates/header', $data);
         $this->view('kategori/index', $data);
         $this->view('templates/footer');
+    }
+
+    function potongArtikel($isiArtikel, $jmlhKarakter){
+        if (strlen($isiArtikel) <= $jmlhKarakter) {
+            return $isiArtikel;
+        }
+        
+        while ($jmlhKarakter > 0 && $isiArtikel[$jmlhKarakter] != " ") {
+            --$jmlhKarakter;
+        }
+        
+        if ($jmlhKarakter == 0) {
+            $potonganIsiArtikel = substr($isiArtikel, 0, $jmlhKarakter);
+        } else {
+            $potonganIsiArtikel = substr($isiArtikel, 0, $jmlhKarakter);
+        }
+        
+        $isiArtikelTerpotong = $potonganIsiArtikel . " ...";
+        return $isiArtikelTerpotong;
     }
 }

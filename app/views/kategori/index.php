@@ -1,14 +1,24 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Blog Home - Start Bootstrap Template</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    -->
 <link rel="stylesheet" href="<?= BASEURL; ?>/css/style_home.css">
+<?php 
+function potongArtikel($isiArtikel, $jmlhKarakter){
+    if (strlen($isiArtikel) <= $jmlhKarakter) {
+        return $isiArtikel;
+    }
+    
+    while ($jmlhKarakter > 0 && $isiArtikel[$jmlhKarakter] != " ") {
+        --$jmlhKarakter;
+    }
+    
+    if ($jmlhKarakter == 0) {
+        $potonganIsiArtikel = substr($isiArtikel, 0, $jmlhKarakter);
+    } else {
+        $potonganIsiArtikel = substr($isiArtikel, 0, $jmlhKarakter);
+    }
+    
+    $isiArtikelTerpotong = $potonganIsiArtikel . " ...";
+    return $isiArtikelTerpotong;
+}
+?>
 </head>
 
 <body>
@@ -31,7 +41,6 @@
     </header>
     <!-- Page content-->
     <div class="container">
-        <!-- <?php var_dump($data['kategori']) ?> -->
         <div class="row">
             <!-- Blog entries-->
             <div class="col-lg-10 mx-auto">
@@ -48,7 +57,7 @@
                                 <div class="card-body">
                                     <div class="small text-muted"><?= $article['hari_tanggal'] ?></div>
                                     <h2 class="card-title h4"><?= $article['judul'] ?></h2>
-                                    <!-- <p class="card-text"><?= $article['summary'] ?></p> -->
+                                    <p class="card-text"><?= potongArtikel($article['isi'], 100); ?></p>
                                     <a class="btn btn-primary" href="<?= BASEURL; ?>/post/index/<?= $article['slug'] ?>">Baca lebih lanjut →</a>
                                 </div>
                             </div>
@@ -84,7 +93,3 @@
             </div>
         </div>
     </div>
-
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
-</html> -->

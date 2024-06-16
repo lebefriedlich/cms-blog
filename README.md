@@ -57,7 +57,7 @@ CMS BLOG - Wonderful Pasuruan adalah sebuah platform blog yang bertujuan untuk m
         - Controller: login
         - Method: index
 
-   - Format URL itu `http://localhost/`**nama_folder**`/public/`**nama_controller**`/`**nama_method**`/`**parameter**
+   - Jadi Format URL nya seperti ini: `http://localhost/`**nama_folder**`/public/`**nama_controller**`/`**nama_method**`/`**parameter**
       
 ## Kontribusi
 Kontribusi selalu dipersilakan! Jika Anda ingin meningkatkan proyek ini, silakan buka *issue* untuk mendiskusikan perubahan yang ingin Anda usulkan atau kirimkan *pull request*.

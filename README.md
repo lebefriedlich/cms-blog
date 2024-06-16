@@ -6,11 +6,14 @@ CMS BLOG - Wonderful Pasuruan adalah sebuah platform blog yang bertujuan untuk m
 
 1. **Clone Project github**
    - Buka terminal dan arahkan ke direktori localhost (Pakai Laragon: di folder www. Pakai XAMPP: di folder htdocs)
-   - kemudian ketik "git clone https://github.com/lebefriedlich/cms-blog.git".
+   - kemudian ketik
+     '''
+     git clone https://github.com/lebefriedlich/cms-blog.git
+     '''
     
 2. **Impor Database ke Manajemen Basis Data**
    - Buka manajemen basis data (seperti phpMyAdmin atau HeidiSQL) dan buat basis data baru (untuk namanya saya sarankan cms_blog).
-   - Impor file database yang ada di folder projek yang namanya cms-blog.ssql.
+   - Impor file database yang ada di folder projek yang namanya cms-blog.sql.
      
 4. **Konfigurasi Database:**
    - Buka file `config.php` di dalam proyek Anda dibagian app->config->config.php.

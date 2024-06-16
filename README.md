@@ -51,13 +51,13 @@ CMS BLOG - Wonderful Pasuruan adalah sebuah platform blog yang bertujuan untuk m
         - Controller: home
         - Method: index
    
-   - Halaman pengelelo konten
+   - Halaman pengelola konten
         - URL: /login
         - Deskripsi: Halaman login untuk pengelola konten.
         - Controller: login
         - Method: index
 
-   - Jadi setelah <<http://localhost/cms-blog/public>> akan mengikuti nama controllernya kemudian nama methodnya
+   - Jadi setelah http://localhost/cms-blog/public/ akan mengikuti nama controllernya kemudian nama methodnya
       
 ## Kontribusi
 Kontribusi selalu dipersilakan! Jika Anda ingin meningkatkan proyek ini, silakan buka *issue* untuk mendiskusikan perubahan yang ingin Anda usulkan atau kirimkan *pull request*.

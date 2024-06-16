@@ -12,7 +12,7 @@ CMS BLOG - Wonderful Pasuruan adalah sebuah platform blog yang bertujuan untuk m
      ```
     
 2. **Impor Database ke Manajemen Basis Data**
-   - Buka manajemen basis data (seperti phpMyAdmin atau HeidiSQL) dan buat basis data baru (untuk namanya saya sarankan cms_blog).
+   - Buka manajemen basis data (seperti phpMyAdmin atau HeidiSQL) dan buat basis data baru (untuk namanya saya sarankan cms-blog).
    - Impor file database yang ada di folder projek yang namanya cms-blog.sql.
      
 4. **Konfigurasi Database:**
